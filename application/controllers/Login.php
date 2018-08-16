@@ -7,9 +7,13 @@ class Login extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('login_model');
-         if($this->session->isLoggedIn){
-        	redirect('/dashboardbase/loadView');
-        }
+        // if($this->session->isLoggedIn){
+        // 	redirect('/dashboardbase/loadView');
+        // }
+        $isLoggedIn = $this->session->userdata ( 'isLoggedIn' );
+		if ( isset ( $isLoggedIn ) && $isLoggedIn == TRUE) {
+			redirect ( '/dashboardbase/loadView' );
+		} 
     }
 
 
@@ -42,6 +46,17 @@ class Login extends CI_Controller {
                     
             redirect('/dashboardbase/loadView');
 		}
+	}
 
+	public function logout()
+	{
+		// $this->session->sess_destroy();
+		// $sessionArray = array(
+  //           'isLoggedIn' => false,
+  //       );
+                    
+        $this->session->set_userdata('isLoggedIn', false);
+                        
+		// redirect('/login');
 	}
 }

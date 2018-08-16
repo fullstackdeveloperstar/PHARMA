@@ -7,9 +7,15 @@ class DashboardBase extends CI_Controller {
     {
         parent::__construct();
         
-        if(!$this->session->isLoggedIn){
-        	redirect('/');
-        }
+        // var_dump($this->session->isLoggedIn);
+        // if(!$this->session->isLoggedIn){
+        // 	redirect('/');
+        // }
+
+        $isLoggedIn = $this->session->userdata ( 'isLoggedIn' );
+		if (! isset ( $isLoggedIn ) || $isLoggedIn != TRUE) {
+			redirect ( 'login' );
+		} 
     }
 
 	public function loadView()
@@ -24,6 +30,14 @@ class DashboardBase extends CI_Controller {
 	{
 		$this->load->view('dashboard/include/main_header');
 		$this->load->view('dashboard/include/main_footer');
+	}
+
+	public function logout()
+	{
+     
+        // $this->session->set_userdata('isLoggedIn', false);
+        $this->session->sess_destroy();
+		redirect('/login');
 	}
 
 }
