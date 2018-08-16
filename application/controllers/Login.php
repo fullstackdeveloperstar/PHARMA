@@ -12,7 +12,7 @@ class Login extends CI_Controller {
         // }
         $isLoggedIn = $this->session->userdata ( 'isLoggedIn' );
 		if ( isset ( $isLoggedIn ) && $isLoggedIn == TRUE) {
-			redirect ( '/dashboardbase/loadView' );
+			redirect ( '/DashboardBase/loadView' );
 		} 
     }
 
@@ -44,7 +44,7 @@ class Login extends CI_Controller {
                     
             $this->session->set_userdata($sessionArray);
                     
-            redirect('/dashboardbase/loadView');
+            redirect('/DashboardBase/loadView');
 		}
 	}
 

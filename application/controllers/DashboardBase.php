@@ -34,7 +34,6 @@ class DashboardBase extends CI_Controller {
 
 	public function logout()
 	{
-     
         // $this->session->set_userdata('isLoggedIn', false);
         $this->session->sess_destroy();
 		redirect('/login');
