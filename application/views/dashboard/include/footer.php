@@ -47,6 +47,7 @@
 
 		<!-- BOOTSTRAP JS -->
 		<script src="<?=base_url()?>assets/js/bootstrap/bootstrap.min.js"></script>
+		<script src="<?=base_url()?>assets/js/notification/SmartNotification.js"></script>
 
 		<!--[if IE 8]>
 			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
