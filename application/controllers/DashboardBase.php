@@ -18,17 +18,18 @@ class DashboardBase extends CI_Controller {
 		} 
     }
 
-	public function loadView()
+	public function loadView($view)
 	{
 		$this->load->view('dashboard/include/header');
 		$this->load->view('dashboard/include/sidebar');
-		$this->loadMainView();
+		$this->loadMainView($view);
 		$this->load->view('dashboard/include/footer');
 	}
 
-	public function loadMainView()
+	public function loadMainView($view)
 	{
 		$this->load->view('dashboard/include/main_header');
+		$this->load->view($view);
 		$this->load->view('dashboard/include/main_footer');
 	}
 

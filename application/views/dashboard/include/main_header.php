@@ -7,7 +7,7 @@
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
 					<li>Home</li>
-					<li>Blank</li>
+					<li>Dashboard</li>
 				</ol>
 				<!-- end breadcrumb -->
 

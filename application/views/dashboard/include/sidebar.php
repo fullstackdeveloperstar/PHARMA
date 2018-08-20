@@ -1,4 +1,4 @@
-<!-- #NAVIGATION -->
+
 		<!-- Left panel : Navigation area -->
 		<!-- Note: This width of the aside area can be adjusted through LESS/SASS variables -->
 		<aside id="left-panel">
@@ -7,12 +7,12 @@
 			<div class="login-info">
 				<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
 					
-					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+					<a href="javascript:void(0);" id="show-shortcut" >
 						<img src="<?=base_url()?>assets/img/avatars/sunny.png" alt="me" class="online" /> 
 						<span>
-							john.doe 
+							<?=$this->session->userdata('admin_username')?>
 						</span>
-						<i class="fa fa-angle-down"></i>
+						<!-- <i class="fa fa-angle-down"></i> -->
 					</a> 
 					
 				</span>
@@ -33,9 +33,7 @@
 				-->
 
 				<ul>
-					<!-- <li class="">
-						<a href="index.html" title="blank_"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Blank</span></a>
-					</li> -->
+					
 
 					<li class="">
 						<a href="#" title="">
@@ -47,60 +45,61 @@
 						</a>
 						<ul>
 							<li class="">
-								<a href="" title="Analytics Dashboard">Analytics Dashboard</a>
+								<a href="<?=base_url()?>Dashboard/analyticsdashboard" title="">Analytics Dashboard</a>
+							</li>
+							<li class="">
+								<a href="<?=base_url()?>Dashboard/admindashboard" title="">Admin Dashboard</a>
 							</li>
 						</ul>
 					</li>
 
 					<li class="">
+						<a href="<?=base_url()?>OfferPrice" title="">
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">Offer Price</span>
+						</a>
+					</li>
+
+					<li class="">
+						<a href="<?=base_url()?>WizardPricesUpdate" title="">
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">Wizard Prices Update</span>
+						</a>
+					</li>
+
+					<li class="">
+						<a href="<?=base_url()?>Currencies" title="">
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">Currencies</span>
+						</a>
+					</li>
+
+					<li class="">
+						<a href="<?=base_url()?>Languages" title="">
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">Language</span>
+						</a>
+					</li>
+
+					<li class="">
 						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-desktop"></i>
-							<span class="menu-item-parent">Website</span>
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">People</span>
 							<b class="collapse-sign">
 								<em class="fa fa-plus-square-o"></em>
 							</b>
 						</a>
 						<ul>
 							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-renren"></i>
-									Manage Static Page
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Manage Contact">
-									<i class="fa fa-lg fa-fw fa-renren"></i>
-									Manage Contact
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-renren"></i>
-									Setting
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-renren"></i>
-							<span class="menu-item-parent">Usage</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
+								<a href="<?=base_url()?>People/addaperson" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Usages
+									Add a Person
 								</a>
 							</li>
 							<li class="">
-								<a href="" title="Setting">
+								<a href="<?=base_url()?>People/managepeople" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Usages
+									Manage People
 								</a>
 							</li>
 						</ul>
@@ -108,52 +107,72 @@
 
 					<li class="">
 						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-bitbucket-square"></i>
-							<span class="menu-item-parent">Drugs</span>
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">Administrators</span>
 							<b class="collapse-sign">
 								<em class="fa fa-plus-square-o"></em>
 							</b>
 						</a>
 						<ul>
 							<li class="">
-								<a href="" title="Manage Static Page">
+								<a href="<?=base_url()?>Administrators/addanadministrator" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Drugs
+									Add an Administrator
 								</a>
 							</li>
 							<li class="">
-								<a href="" title="Setting">
+								<a href="<?=base_url()?>Administrators/manageadministrators" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Drugs
+									Manage Administrators
 								</a>
 							</li>
 						</ul>
 					</li>
 
-
 					<li class="">
 						<a href="#" title="">
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">Unit of Measure</span>
+							<b class="collapse-sign">
+								<em class="fa fa-plus-square-o"></em>
+							</b>
+						</a>
+						<ul>
+							<li class="">
+								<a href="<?=base_url()?>UnitOfMeasure/confection" title="">
+									<i class="fa fa-lg fa-fw fa-gear"></i>
+									Confection Quantity U. of M.
+								</a>
+							</li>
+							<li class="">
+								<a href="<?=base_url()?>UnitOfMeasure/ingredients" title="">
+									<i class="fa fa-lg fa-fw fa-picture-o"></i>
+									Active Ingredients Concentration U. of M.
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="<?=base_url()?>ActiveIngredients" title="">
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">Active Ingredients</span>
+						</a>
+					</li>
+
+					<li class="">
+						<a href="<?=base_url()?>Formats" title="">
 							<i class="fa fa-lg fa-fw fa-pencil-square-o"></i>
 							<span class="menu-item-parent">Formats</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
 						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Formats
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Formats
-								</a>
-							</li>
-						</ul>
 					</li>
+
+					<li class="">
+						<a href="<?=base_url()?>Drugs" title="">
+							<i class="fa fa-lg fa-fw fa-bitbucket-square"></i>
+							<span class="menu-item-parent">Drugs</span>
+						</a>
+					</li>					
 
 					<li class="">
 						<a href="#" title="">
@@ -165,68 +184,20 @@
 						</a>
 						<ul>
 							<li class="">
-								<a href="" title="Manage Static Page">
+								<a href="<?=base_url()?>Products/addnewproduct" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Products
+									Add New Product
 								</a>
 							</li>
 							<li class="">
-								<a href="" title="Setting">
+								<a href="<?=base_url()?>Products/manageproducts" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Products
 								</a>
 							</li>
 						</ul>
 					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Active Ingredients</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Ingredients
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Ingredients
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Dosages</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Dosages
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Dosages
-								</a>
-							</li>
-						</ul>
-					</li>
-
+					
 					<li class="">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
@@ -237,13 +208,13 @@
 						</a>
 						<ul>
 							<li class="">
-								<a href="" title="Manage Static Page">
+								<a href="<?=base_url()?>Vendors/addnewvendor" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Vendors
+									Add New Vendor
 								</a>
 							</li>
 							<li class="">
-								<a href="" title="Setting">
+								<a href="<?=base_url()?>Vendors/managevendors" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Vendors
 								</a>
@@ -251,30 +222,7 @@
 						</ul>
 					</li>
 
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Vendors Office Location</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Office Location
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Office Location
-								</a>
-							</li>
-						</ul>
-					</li>
-
+					
 					<li class="">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
@@ -285,87 +233,15 @@
 						</a>
 						<ul>
 							<li class="">
-								<a href="" title="Manage Static Page">
+								<a href="<?=base_url()?>VendorsOffers/addnewoffer" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Offers
+									Add New Offer
 								</a>
 							</li>
 							<li class="">
-								<a href="" title="Setting">
+								<a href="<?=base_url()?>VendorsOffers/manageoffers" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Offers
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Offer Price</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Set Offer Price
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Offer Price
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Currency</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Currency
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Currency
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Language</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Language
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Language
 								</a>
 							</li>
 						</ul>
@@ -381,13 +257,13 @@
 						</a>
 						<ul>
 							<li class="">
-								<a href="" title="Manage Static Page">
+								<a href="<?=base_url()?>AffiliationServices/add" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Third Party Affiliation Services
+									Add Third Party Affiliation Service
 								</a>
 							</li>
 							<li class="">
-								<a href="" title="Setting">
+								<a href="<?=base_url()?>AffiliationServices/manage" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Third Party Affiliation Services
 								</a>
@@ -398,157 +274,39 @@
 					<li class="">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">People</span>
+							<span class="menu-item-parent">CSV/XML Prices Update</span>
 							<b class="collapse-sign">
 								<em class="fa fa-plus-square-o"></em>
 							</b>
 						</a>
 						<ul>
 							<li class="">
-								<a href="" title="Manage Static Page">
+								<a href="<?=base_url()?>CSVXMLPricesUpdate/addmanagecsvxmlpricemodel" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add People
+									Add/Manage CSV/XML Price Models
 								</a>
 							</li>
 							<li class="">
-								<a href="" title="Setting">
+								<a href="<?=base_url()?>CSVXMLPricesUpdate/csvbulkpricesupdate" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage People
+									CSV Bulk Prices Update
 								</a>
 							</li>
 						</ul>
 					</li>
 
 					<li class="">
-						<a href="#" title="">
+						<a href="<?=base_url()?>SpecialDiscounts" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">System Operators</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
+							<span class="menu-item-parent">Special Discounts</span>
 						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add System Operators
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage System Operators
-								</a>
-							</li>
-						</ul>
 					</li>
 
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Wizard</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Create Wizard
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Wizard
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">CSV Price Update</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add New Prices Update CSV Model
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage CSV Price Update
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									CSV file bulk prices update
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Most Request</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Most Request
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Most Request
-								</a>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Click Table</span>
-							<b class="collapse-sign">
-								<em class="fa fa-plus-square-o"></em>
-							</b>
-						</a>
-						<ul>
-							<li class="">
-								<a href="" title="Manage Static Page">
-									<i class="fa fa-lg fa-fw fa-gear"></i>
-									Add Click Table
-								</a>
-							</li>
-							<li class="">
-								<a href="" title="Setting">
-									<i class="fa fa-lg fa-fw fa-picture-o"></i>
-									Manage Click Table
-								</a>
-							</li>
-						</ul>
-					</li>
-
+					
 				</ul>
 			</nav>
 
 			<span class="minifyme" data-action="minifyMenu"> <i class="fa fa-arrow-circle-left hit"></i> </span>
 
 		</aside>
-		<!-- END NAVIGATION -->
+		<!-- END NAVIGATION
