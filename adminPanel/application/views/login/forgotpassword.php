@@ -24,8 +24,8 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 		<!-- #FAVICONS -->
-		<link rel="shortcut icon" href="<?=base_url()?>assets/img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="<?=base_url()?>assets/img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
 
 		<!-- #GOOGLE FONT -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -46,23 +46,21 @@
 		<link rel="apple-touch-startup-image" href="img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 		<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
-		<style type="text/css">
-			label.error{
-				color: red;
-			}
-		</style>
 
 	</head>
 	
 	<body class="animated fadeInDown">
-
+		<!-- possible classes: minified, no-right-panel, fixed-ribbon, fixed-header, fixed-width-->
 		<header id="header">
+			<!--<span id="logo"></span>-->
 
 			<div id="logo-group">
 				<span id="logo"> <img src="<?=base_url()?>assets/img/logo.png" alt="SmartAdmin"> </span>
+
+				<!-- END AJAX-DROPDOWN -->
 			</div>
 
-			<span id="extr-page-header-space"> <span class="hidden-mobile hidden-xs">Need an account?</span> <a href="<?=base_url()?>login/register" class="btn btn-danger">Create account</a> </span>
+			<span id="extr-page-header-space"> <span class="hidden-mobile hidden-xs">Need an account?</span> <a href="register.html" class="btn btn-danger">Create account</a> </span>
 
 		</header>
 
@@ -106,39 +104,28 @@
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
 						<div class="well no-padding">
-							<form method="post" action="<?=base_url()?>login/postLogin" id="login-form" class="smart-form client-form">
+							<form method="post" action="<?=base_url()?>login/postForgotPassword" id="login-form" class="smart-form client-form">
 								<header>
-									Sign In
+									Forgot Password
 								</header>
 
 								<fieldset>
 									
 									<section>
-										<label class="label">E-mail</label>
-										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<input type="email" name="email">
-											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter email address/username</b></label>
-									</section>
-
-									<section>
-										<label class="label">Password</label>
-										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="password">
-											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
-										<div class="note">
-											<a href="<?=base_url()?>login/forgotpassword">Forgot password?</a>
+										<label class="label">Enter your email address</label>
+										<label class="input"> <i class="icon-append fa fa-envelope"></i>
+											<input type="email" name="email" required="">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-envelope txt-color-teal"></i> Please enter email address for password reset</b></label>
+											<div class="note">
+											<a href="<?=base_url()?>">I remembered my password!</a>
 										</div>
 									</section>
+									
 
-									<section>
-										<label class="checkbox">
-											<input type="checkbox" name="remember" checked="">
-											<i></i>Stay signed in</label>
-									</section>
 								</fieldset>
 								<footer>
 									<button type="submit" class="btn btn-primary">
-										Sign in
+										<i class="fa fa-refresh"></i> Reset Password
 									</button>
 								</footer>
 							</form>
@@ -147,17 +134,17 @@
 						
 						<h5 class="text-center"> - Or sign in using -</h5>
 															
-							<ul class="list-inline text-center">
-								<li>
-									<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
-								</li>
-							</ul>
+										<ul class="list-inline text-center">
+											<li>
+												<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
+											</li>
+											<li>
+												<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
+											</li>
+											<li>
+												<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
+											</li>
+										</ul>
 						
 					</div>
 				</div>
@@ -191,41 +178,7 @@
 
 		<!-- MAIN APP JS FILE -->
 		<script src="<?=base_url()?>assets/js/app.min.js"></script>
-		<!-- JQUERY VALIDATE -->
-		<script src="<?=base_url()?>assets/js/plugin/jquery-validate/jquery.validate.min.js"></script>
-		<script type="text/javascript">
-			$(function() {
-				// Validation
-				$("#login-form").validate({
-					// Rules for form validation
-					rules : {
-						email : {
-							required : true
-						},
-						password : {
-							required : true,
-							minlength : 3,
-							maxlength : 20
-						}
-					},
 
-					// Messages for form validation
-					messages : {
-						email : {
-							required : 'Please enter your username'
-						},
-						password : {
-							required : 'Please enter your password'
-						}
-					},
-
-					// Do not change code below
-					errorPlacement : function(error, element) {
-						error.insertAfter(element.parent());
-					}
-				});
-			});
-		</script>
 
 	</body>
 </html>
