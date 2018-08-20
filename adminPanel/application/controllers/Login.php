@@ -48,14 +48,7 @@ class Login extends CI_Controller {
 	}
 
 	public function logout()
-	{
-		// $this->session->sess_destroy();
-		// $sessionArray = array(
-  //           'isLoggedIn' => false,
-  //       );
-                    
+	{            
         $this->session->set_userdata('isLoggedIn', false);
-                        
-		// redirect('/login');
 	}
 }
