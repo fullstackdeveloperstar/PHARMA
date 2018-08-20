@@ -25,8 +25,9 @@ class DashboardBase extends CI_Controller {
 
 	public function loadView($view)
 	{
+		$data['view'] = $view;
 		$this->load->view('dashboard/include/header');
-		$this->load->view('dashboard/include/sidebar');
+		$this->load->view('dashboard/include/sidebar', $data);
 		$this->loadMainView($view);
 		$this->load->view('dashboard/include/footer');
 	}

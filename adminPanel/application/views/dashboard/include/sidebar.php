@@ -35,7 +35,9 @@
 				<ul>
 					
 
-					<li class="">
+					<li class="<?php
+						if($view == 'dashboard/dashboard/analyticsdashboard' || $view == 'dashboard/dashboard/admindashboard') echo 'active';
+					?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-home"></i>
 							<span class="menu-item-parent">Dashboard</span>
@@ -44,44 +46,50 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php
+								if($view == 'dashboard/dashboard/analyticsdashboard') echo 'active';
+							?>">
 								<a href="<?=base_url()?>Dashboard/analyticsdashboard" title="">Analytics Dashboard</a>
 							</li>
-							<li class="">
+							<li class="<?php
+								if($view == 'dashboard/dashboard/admindashboard') echo 'active';
+							?>">
 								<a href="<?=base_url()?>Dashboard/admindashboard" title="">Admin Dashboard</a>
 							</li>
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="<?php
+						if($view == 'dashboard/offerprice/offerprice') echo 'active';
+					?>">
 						<a href="<?=base_url()?>OfferPrice" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Offer Price</span>
 						</a>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/wizardpricesupdate/wizardpricesupdate') echo 'active';?>">
 						<a href="<?=base_url()?>WizardPricesUpdate" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Wizard Prices Update</span>
 						</a>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/currencies/currencies') echo 'active';?>">
 						<a href="<?=base_url()?>Currencies" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Currencies</span>
 						</a>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/languages/languages') echo 'active';?>">
 						<a href="<?=base_url()?>Languages" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Language</span>
 						</a>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/people/addaperson' || $view == 'dashboard/people/managepeople') echo 'active';?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">People</span>
@@ -90,13 +98,13 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/people/addaperson') echo 'active';?>">
 								<a href="<?=base_url()?>People/addaperson" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
 									Add a Person
 								</a>
 							</li>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/people/managepeople') echo 'active';?>">
 								<a href="<?=base_url()?>People/managepeople" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage People
@@ -105,7 +113,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/administrators/addanadministrator' || $view == 'dashboard/administrators/manageadministrators') echo 'active';?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Administrators</span>
@@ -114,13 +122,13 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/administrators/addanadministrator') echo 'active';?>">
 								<a href="<?=base_url()?>Administrators/addanadministrator" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
 									Add an Administrator
 								</a>
 							</li>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/administrators/manageadministrators') echo 'active';?>">
 								<a href="<?=base_url()?>Administrators/manageadministrators" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Administrators
@@ -129,7 +137,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/unitofmeasure/confection' || $view == 'dashboard/unitofmeasure/ingredients') echo 'active';?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Unit of Measure</span>
@@ -138,13 +146,13 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/unitofmeasure/confection') echo 'active';?>">
 								<a href="<?=base_url()?>UnitOfMeasure/confection" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
 									Confection Quantity U. of M.
 								</a>
 							</li>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/unitofmeasure/ingredients') echo 'active';?>">
 								<a href="<?=base_url()?>UnitOfMeasure/ingredients" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Active Ingredients Concentration U. of M.
@@ -153,28 +161,28 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/activeingredients/activeingredients') echo 'active';?>">
 						<a href="<?=base_url()?>ActiveIngredients" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Active Ingredients</span>
 						</a>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/formats/formats') echo 'active';?>">
 						<a href="<?=base_url()?>Formats" title="">
 							<i class="fa fa-lg fa-fw fa-pencil-square-o"></i>
 							<span class="menu-item-parent">Formats</span>
 						</a>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/drugs/drugs') echo 'active';?>">
 						<a href="<?=base_url()?>Drugs" title="">
 							<i class="fa fa-lg fa-fw fa-bitbucket-square"></i>
 							<span class="menu-item-parent">Drugs</span>
 						</a>
 					</li>					
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/products/addnewproduct' || $view == 'dashboard/products/manageproducts') echo 'active';?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Products</span>
@@ -183,13 +191,13 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/products/addnewproduct') echo 'active';?>">
 								<a href="<?=base_url()?>Products/addnewproduct" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
 									Add New Product
 								</a>
 							</li>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/products/manageproducts') echo 'active';?>">
 								<a href="<?=base_url()?>Products/manageproducts" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Products
@@ -198,7 +206,7 @@
 						</ul>
 					</li>
 					
-					<li class="">
+					<li class="<?php if($view == 'dashboard/vendors/addnewvendor' || $view == 'dashboard/vendors/managevendors') echo 'active';?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Vendors</span>
@@ -207,13 +215,13 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/vendors/addnewvendor') echo 'active';?>">
 								<a href="<?=base_url()?>Vendors/addnewvendor" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
 									Add New Vendor
 								</a>
 							</li>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/vendors/managevendors') echo 'active';?>">
 								<a href="<?=base_url()?>Vendors/managevendors" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Vendors
@@ -223,7 +231,7 @@
 					</li>
 
 					
-					<li class="">
+					<li class="<?php if($view == 'dashboard/vendorsoffers/addnewoffer' || $view == 'dashboard/vendorsoffers/manageoffers') echo 'active';?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Vendors Offers</span>
@@ -232,13 +240,13 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/vendorsoffers/addnewoffer') echo 'active';?>">
 								<a href="<?=base_url()?>VendorsOffers/addnewoffer" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
 									Add New Offer
 								</a>
 							</li>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/vendorsoffers/manageoffers') echo 'active';?>">
 								<a href="<?=base_url()?>VendorsOffers/manageoffers" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Offers
@@ -247,7 +255,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/affiliationservices/add' || $view == 'dashboard/affiliationservices/manage') echo 'active';?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Affiliation Services</span>
@@ -256,13 +264,13 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/affiliationservices/add') echo 'active';?>">
 								<a href="<?=base_url()?>AffiliationServices/add" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
 									Add Third Party Affiliation Service
 								</a>
 							</li>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/affiliationservices/manage') echo 'active';?>">
 								<a href="<?=base_url()?>AffiliationServices/manage" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									Manage Third Party Affiliation Services
@@ -271,7 +279,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/csvxmlpriceupdate/addmanagecsvxmlpricemodels' || $view == 'dashboard/csvxmlpriceupdate/csvbulkpricesupdate') echo 'active';?>">
 						<a href="#" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">CSV/XML Prices Update</span>
@@ -280,13 +288,13 @@
 							</b>
 						</a>
 						<ul>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/csvxmlpriceupdate/addmanagecsvxmlpricemodels') echo 'active';?>">
 								<a href="<?=base_url()?>CSVXMLPricesUpdate/addmanagecsvxmlpricemodel" title="">
 									<i class="fa fa-lg fa-fw fa-gear"></i>
 									Add/Manage CSV/XML Price Models
 								</a>
 							</li>
-							<li class="">
+							<li class="<?php if($view == 'dashboard/csvxmlpriceupdate/csvbulkpricesupdate') echo 'active';?>">
 								<a href="<?=base_url()?>CSVXMLPricesUpdate/csvbulkpricesupdate" title="">
 									<i class="fa fa-lg fa-fw fa-picture-o"></i>
 									CSV Bulk Prices Update
@@ -295,7 +303,7 @@
 						</ul>
 					</li>
 
-					<li class="">
+					<li class="<?php if($view == 'dashboard/specialdiscounts/specialdiscounts') echo 'active';?>">
 						<a href="<?=base_url()?>SpecialDiscounts" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
 							<span class="menu-item-parent">Special Discounts</span>
