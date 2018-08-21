@@ -55,10 +55,15 @@ class Login_model extends CI_Model
     }
 
     function resetpassword($resetid, $password) {
+        $this->load->helper('date');
         $this->db->where('resetid', $resetid);
         $password = getHashedPassword($password);
         $this->db->set('admin_password', $password);
-        $this->db->set('resetid', '');
+        $this->db->set('resetid', NULL);
+        $datestring = '%Y-%m-%d %h:%i %a';
+        $time = time();
+        // echo mdate($datestring, $time);
+        $this->db->set('last_modified',mdate($datestring, $time));
         $this->db->update($this->table_name);
     }
 }

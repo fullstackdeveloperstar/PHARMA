@@ -310,6 +310,13 @@
 						</a>
 					</li>
 
+					<li class="">
+						<a href="<?=base_url()?>DashboardBase/logout" title="">
+							<i class="fa fa-lg fa-fw fa-xing-square"></i>
+							<span class="menu-item-parent">Log Out</span>
+						</a>
+					</li>
+
 					
 				</ul>
 			</nav>
