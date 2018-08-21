@@ -62,8 +62,8 @@
 				<span id="logo"> <img src="<?=base_url()?>assets/img/logo.png" alt="SmartAdmin"> </span>
 			</div>
 
-			<span id="extr-page-header-space"> <span class="hidden-mobile hidden-xs">Need an account?</span> <a href="<?=base_url()?>login/register" class="btn btn-danger">Create account</a> </span>
-
+			<!-- <span id="extr-page-header-space"> <span class="hidden-mobile hidden-xs">Need an account?</span> <a href="<?=base_url()?>login/register" class="btn btn-danger">Create account</a> </span>
+ -->
 		</header>
 
 		<div id="main" role="main">
@@ -72,7 +72,7 @@
 			<div id="content" class="container">
 
 				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+				<!-- 	<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
 						<h1 class="txt-color-red login-header-big">SmartAdmin</h1>
 						<div class="hero">
 
@@ -103,8 +103,8 @@
 							</div>
 						</div>
 
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+					</div> -->
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-md-offset-3 col-lg-offset-4 ">
 						<div class="well no-padding">
 							<form method="post" action="<?=base_url()?>login/postLogin" id="login-form" class="smart-form client-form">
 								<header>
@@ -130,11 +130,11 @@
 										</div>
 									</section>
 
-									<section>
+									<!-- <section>
 										<label class="checkbox">
 											<input type="checkbox" name="remember" checked="">
 											<i></i>Stay signed in</label>
-									</section>
+									</section> -->
 								</fieldset>
 								<footer>
 									<button type="submit" class="btn btn-primary">
@@ -145,7 +145,7 @@
 
 						</div>
 						
-						<h5 class="text-center"> - Or sign in using -</h5>
+						<!-- <h5 class="text-center"> - Or sign in using -</h5>
 															
 							<ul class="list-inline text-center">
 								<li>
@@ -157,7 +157,7 @@
 								<li>
 									<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
 								</li>
-							</ul>
+							</ul> -->
 						
 					</div>
 				</div>
