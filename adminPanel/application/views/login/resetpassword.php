@@ -97,7 +97,7 @@
 				<?php } else {?>
 				<div class="row">
 					<div class="alert alert-danger" role="alert">
-					  <h5>ResetId is not exist</h5>
+					  <h5>This  PW reset link has  been already used and it is not  valid.</h5>
 					</div>
 				</div>
 				<?php }?>

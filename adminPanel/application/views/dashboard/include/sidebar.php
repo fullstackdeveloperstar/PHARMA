@@ -7,12 +7,12 @@
 			<div class="login-info">
 				<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
 					
-					<a href="javascript:void(0);" id="show-shortcut" >
+					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
 						<img src="<?=base_url()?>assets/img/avatars/sunny.png" alt="me" class="online" /> 
 						<span>
 							<?=$this->session->userdata('admin_username')?>
 						</span>
-						<!-- <i class="fa fa-angle-down"></i> -->
+						<i class="fa fa-angle-down"></i>
 					</a> 
 					
 				</span>
@@ -309,14 +309,6 @@
 							<span class="menu-item-parent">Special Discounts</span>
 						</a>
 					</li>
-
-					<li class="">
-						<a href="<?=base_url()?>DashboardBase/logout" title="">
-							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Log Out</span>
-						</a>
-					</li>
-
 					
 				</ul>
 			</nav>
