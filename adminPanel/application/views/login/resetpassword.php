@@ -65,8 +65,7 @@
 				<!-- END AJAX-DROPDOWN -->
 			</div>
 
-			<span id="extr-page-header-space"> <span class="hidden-mobile hidden-xs">Need an account?</span> <a href="<?=base_url()?>login/register" class="btn btn-danger">Create account</a> </span>
-
+		
 		</header>
 
 		<div id="main" role="main">
