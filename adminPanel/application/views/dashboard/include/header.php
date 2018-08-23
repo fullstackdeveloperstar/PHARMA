@@ -46,6 +46,42 @@
 		<link rel="apple-touch-startup-image" href="img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
 		<link rel="apple-touch-startup-image" href="img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
+
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			if (!window.jQuery) {
+				document.write('<script src="<?=base_url()?>js/libs/jquery-3.2.1.min.js"><\/script>');
+			}
+		</script>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script>
+			if (!window.jQuery.ui) {
+				document.write('<script src="<?=base_url()?>js/libs/jquery-ui.min.js"><\/script>');
+			}
+		</script>
+
+
+		<!-- BOOTSTRAP JS -->
+		<script src="<?=base_url()?>assets/js/bootstrap/bootstrap.min.js"></script>
+		<script src="<?=base_url()?>assets/js/notification/SmartNotification.js"></script>
+
+		<!--[if IE 8]>
+			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+		<![endif]-->
+
+		<!-- MAIN APP JS FILE -->
+		
+		<script src="<?=base_url()?>assets/js/plugin/datatables/jquery.dataTables.min.js"></script>
+		<script src="<?=base_url()?>assets/js/plugin/datatables/dataTables.colVis.min.js"></script>
+		<script src="<?=base_url()?>assets/js/plugin/datatables/dataTables.tableTools.min.js"></script>
+		<script src="<?=base_url()?>assets/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+		<script src="<?=base_url()?>assets/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+		<!-- JARVIS WIDGETS -->
+		<script src="<?=base_url()?>assets/js/smartwidgets/jarvis.widget.min.js"></script>
+
+
 	</head>
 
 	<!--

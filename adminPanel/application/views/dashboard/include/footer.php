@@ -1,3 +1,4 @@
+		</div>
 		<!-- #PAGE FOOTER -->
 		<div class="page-footer">
 			<div class="row">
@@ -33,36 +34,10 @@
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
 
 
-		<!-- #PLUGINS -->
-		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script>
-			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-3.2.1.min.js"><\/script>');
-			}
-		</script>
-
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-		<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui.min.js"><\/script>');
-			}
-		</script>
-
-		<!-- IMPORTANT: APP CONFIG -->
 		<script src="<?=base_url()?>assets/js/app.config.js"></script>
-
-		<!-- BOOTSTRAP JS -->
-		<script src="<?=base_url()?>assets/js/bootstrap/bootstrap.min.js"></script>
-		<script src="<?=base_url()?>assets/js/notification/SmartNotification.js"></script>
-
-		<!--[if IE 8]>
-			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
-		<![endif]-->
-
 		<!-- MAIN APP JS FILE -->
 		<script src="<?=base_url()?>assets/js/app.min.js"></script>
-
+		
 		<!-- Your GOOGLE ANALYTICS CODE Below -->
 		<script>
 	

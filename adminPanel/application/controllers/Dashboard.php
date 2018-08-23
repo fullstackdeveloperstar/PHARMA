@@ -9,11 +9,11 @@ class Dashboard extends DashboardBase
 
     public function analyticsdashboard()
     {
-    	$this->loadView('dashboard/dashboard/analyticsdashboard');
+    	$this->loadView('dashboard/dashboard/analyticsdashboard', []);
     }
 
     public function admindashboard()
     {
-    	$this->loadView('dashboard/dashboard/admindashboard');	
+    	$this->loadView('dashboard/dashboard/admindashboard', []);	
     }
 }
