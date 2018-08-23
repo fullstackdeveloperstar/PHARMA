@@ -95,10 +95,10 @@
 														<input  data-currency-id="<?=$currency['id']?>" type="text" name="" value="<?=$currency['symbol']?>" class="form-control hide edit_symbol">
 													</td>
 													<td>
-														<span  data-currency-id="<?=$currency['id']?>"><?=$currency['enabled'] == '1' ? 'Active' : 'Disable'?></span>
+														<span  data-currency-id="<?=$currency['id']?>"><?=$currency['enabled'] == '1' ? 'Yes' : 'No'?></span>
 														<select  data-currency-id="<?=$currency['id']?>" class="form-control hide edit_enabled">
-															<option value="1" <?=$currency['enabled'] == '1' ? 'selected': ''?>>Active</option>
-															<option value="0"  <?=$currency['enabled'] == '0' ? 'selected': ''?>>Disable</option>
+															<option value="1" <?=$currency['enabled'] == '1' ? 'selected': ''?>>Yes</option>
+															<option value="0"  <?=$currency['enabled'] == '0' ? 'selected': ''?>>No</option>
 														</select>
 													</td>
 													<td><?=$currency['creation']?></td>
@@ -170,8 +170,8 @@ $(document).ready(function() {
 				<td><input type="text" class="form-control" name="" id="addnew_symbol"></td>
 				<td>
 					<select class="form-control" id="addnew_enabled">
-						<option value="1">Active</option>
-						<option value="0">Disabled</option>
+						<option value="1">Yes</option>
+						<option value="0">No</option>
 					</select>
 				</td>
 				<td></td>
@@ -324,15 +324,6 @@ $(document).ready(function() {
 			buttons : '[No][Yes]'
 		}, function(ButtonPressed) {
 			if (ButtonPressed === "Yes") {
-
-				// $.smallBox({
-				// 	title : "Callback function",
-				// 	content : "<i class='fa fa-clock-o'></i> <i>You pressed Yes...</i>",
-				// 	color : "#659265",
-				// 	iconSmall : "fa fa-check fa-2x fadeInRight animated",
-				// 	timeout : 4000
-				// });
-				
 				$.ajax({
 					url : '<?=base_url()?>Currencies/delete', 
 					type: 'post',
@@ -350,13 +341,6 @@ $(document).ready(function() {
 
 			}
 			if (ButtonPressed === "No") {
-				// $.smallBox({
-				// 	title : "Callback function",
-				// 	content : "<i class='fa fa-clock-o'></i> <i>You pressed No...</i>",
-				// 	color : "#C46A69",
-				// 	iconSmall : "fa fa-times fa-2x fadeInRight animated",
-				// 	timeout : 4000
-				// });
 			}
 
 		});
