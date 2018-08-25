@@ -42,85 +42,85 @@
 
 
 
-				<!-- Widget ID (each widget will need unique ID)-->
-					<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
-						
-						<header>
-							<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-							<h2>Standard Data Tables </h2>
-		
-						</header>
-		
-						<!-- widget div-->
-						<div>
-		
+	<!-- Widget ID (each widget will need unique ID)-->
+		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+			
+			<header>
+				<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+				<h2>Standard Data Tables </h2>
+
+			</header>
+
+			<!-- widget div-->
+			<div>
+
+				
+				<!-- widget content -->
+				<div class="widget-body no-padding">
+					<div>
+						<button class="btn btn-success" id="addnewcurrencybtn">Add New Currency</button>	
+					</div>
+					<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+						<thead>			                
+							<tr>
+								<th data-hide="phone">ID</th>
+								<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
+								<th data-hide="phone">Short Key</th>
+								<th>Symbol</th>
+								<th data-hide="phone,tablet">Enabled</th>
+								<th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i>Created Date</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody id="currency_table_tbody">
 							
-							<!-- widget content -->
-							<div class="widget-body no-padding">
-								<div>
-									<button class="btn btn-success" id="addnewcurrencybtn">Add New Currency</button>	
-								</div>
-								<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
-									<thead>			                
-										<tr>
-											<th data-hide="phone">ID</th>
-											<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
-											<th data-hide="phone">Short Key</th>
-											<th>Symbol</th>
-											<th data-hide="phone,tablet">Enabled</th>
-											<th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i>Created Date</th>
-											<th>Actions</th>
-										</tr>
-									</thead>
-									<tbody id="currency_table_tbody">
-										
-										<?php
-											$i = 0;
+							<?php
+								$i = 0;
 
-											foreach ($currencies as $currency) {
-												$i++;
-												?>
-												<tr data-currency-id="<?=$currency['id']?>" class="smart-form">
-													<td><?=$i?></td>
-													<td>
-														<span data-currency-id="<?=$currency['id']?>"><?=$currency['name']?></span>
-														<input  data-currency-id="<?=$currency['id']?>" type="text" name="" value="<?=$currency['name']?>" class="form-control hide edit_name" >
-													</td>
-													<td>
-														<span  data-currency-id="<?=$currency['id']?>"><?=$currency['short_key']?></span>
-														<input  data-currency-id="<?=$currency['id']?>" type="text" name="" value="<?=$currency['short_key']?>" class="form-control hide edit_short_key">
-													</td>
-													<td>
-														<span  data-currency-id="<?=$currency['id']?>"><?=$currency['symbol']?></span>
-														<input  data-currency-id="<?=$currency['id']?>" type="text" name="" value="<?=$currency['symbol']?>" class="form-control hide edit_symbol">
-													</td>
-													<td>
-														<span  data-currency-id="<?=$currency['id']?>"><?=$currency['enabled'] == '1' ? 'Yes' : 'No'?></span>
-														<select  data-currency-id="<?=$currency['id']?>" class="form-control hide edit_enabled">
-															<option value="1" <?=$currency['enabled'] == '1' ? 'selected': ''?>>Yes</option>
-															<option value="0"  <?=$currency['enabled'] == '0' ? 'selected': ''?>>No</option>
-														</select>
-													</td>
-													<td><?=$currency['creation']?></td>
-													<td>
-														<button class="hide btn btn-success savecurrencybtn" data-currency-id="<?=$currency['id']?>" style="padding: 6px 12px;">Save</button>
-														<button class="hide btn btn-danger cancelcurrencybtn" data-currency-id="<?=$currency['id']?>" style="padding: 6px 12px;">Cancel</button>
-														<button class="btn btn-success editcurrencybtn" data-currency-id="<?=$currency['id']?>"   style="padding: 6px 12px;">Edit</button>
-														<button class="btn btn-danger deletecurrencybtn" data-currency-id="<?=$currency['id']?>"  style="padding: 6px 12px;">Delete</button>
-													</td>
-												</tr>
-												<?php
-											}
-										?>
-									</tbody>
-								</table>
+								foreach ($currencies as $currency) {
+									$i++;
+									?>
+									<tr data-currency-id="<?=$currency['id']?>" class="smart-form">
+										<td><?=$i?></td>
+										<td>
+											<span data-currency-id="<?=$currency['id']?>"><?=$currency['name']?></span>
+											<input  data-currency-id="<?=$currency['id']?>" type="text" name="" value="<?=$currency['name']?>" class="form-control hide edit_name" >
+										</td>
+										<td>
+											<span  data-currency-id="<?=$currency['id']?>"><?=$currency['short_key']?></span>
+											<input  data-currency-id="<?=$currency['id']?>" type="text" name="" value="<?=$currency['short_key']?>" class="form-control hide edit_short_key">
+										</td>
+										<td>
+											<span  data-currency-id="<?=$currency['id']?>"><?=$currency['symbol']?></span>
+											<input  data-currency-id="<?=$currency['id']?>" type="text" name="" value="<?=$currency['symbol']?>" class="form-control hide edit_symbol">
+										</td>
+										<td>
+											<span  data-currency-id="<?=$currency['id']?>"><?=$currency['enabled'] == '1' ? 'Yes' : 'No'?></span>
+											<select  data-currency-id="<?=$currency['id']?>" class="form-control hide edit_enabled">
+												<option value="1" <?=$currency['enabled'] == '1' ? 'selected': ''?>>Yes</option>
+												<option value="0"  <?=$currency['enabled'] == '0' ? 'selected': ''?>>No</option>
+											</select>
+										</td>
+										<td><?=$currency['creation']?></td>
+										<td>
+											<button class="hide btn btn-success savecurrencybtn" data-currency-id="<?=$currency['id']?>" style="padding: 6px 12px;">Save</button>
+											<button class="hide btn btn-danger cancelcurrencybtn" data-currency-id="<?=$currency['id']?>" style="padding: 6px 12px;">Cancel</button>
+											<button class="btn btn-success editcurrencybtn" data-currency-id="<?=$currency['id']?>"   style="padding: 6px 12px;">Edit</button>
+											<button class="btn btn-danger deletecurrencybtn" data-currency-id="<?=$currency['id']?>"  style="padding: 6px 12px;">Delete</button>
+										</td>
+									</tr>
+									<?php
+								}
+							?>
+						</tbody>
+					</table>
 
-							</div>
-							<!-- end widget content -->
-		
-						</div>
-						<!-- end widget div -->
-		
+				</div>
+				<!-- end widget content -->
+
+			</div>
+			<!-- end widget div -->
+
 
 <script >
 $(document).ready(function() {
