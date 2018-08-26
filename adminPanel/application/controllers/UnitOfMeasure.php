@@ -6,6 +6,7 @@ class UnitOfMeasure extends DashboardBase
     {
         parent::__construct();
         $this->load->model('confection_model');
+        $this->load->model('concentration_model');
     }
 
     public function confection()
@@ -16,7 +17,8 @@ class UnitOfMeasure extends DashboardBase
 
     public function ingredients()
     {
-    	$this->loadView('dashboard/unitofmeasure/ingredients', []);
+        $data['concentrations'] = $this->concentration_model->getAll();
+    	$this->loadView('dashboard/unitofmeasure/ingredients', $data);
     }
 
     public function postAddNewConfection()
@@ -25,6 +27,16 @@ class UnitOfMeasure extends DashboardBase
         $data['language_id'] = 1;
 
         $this->confection_model->add($data);
+        $return_data['success'] = 1;
+        echo json_encode($return_data);
+    }
+
+    public function postAddNewConcentration()
+    {
+        $data['unit_of_measure'] = $this->input->post('unit_of_measure');
+        $data['language_id'] = 1;
+
+        $this->concentration_model->add($data);
         $return_data['success'] = 1;
         echo json_encode($return_data);
     }
@@ -40,9 +52,27 @@ class UnitOfMeasure extends DashboardBase
         echo json_encode($return_data);
     }
 
-     public function deleteConfection() {
+    public function postEditConcentration()
+    {
+        $id = $this->input->post('id');
+        $data['unit_of_measure'] = $this->input->post('unit_of_measure');
+        $data['language_id'] = 1;
+
+        $this->concentration_model->update($id, $data);
+        $return_data['success'] = 1;
+        echo json_encode($return_data);
+    }
+
+    public function deleteConfection() {
         $id = $this->input->post('id');
         $this->confection_model->delete($id);
+        $return_data['success'] = 1;
+        echo json_encode($return_data);
+    }
+
+    public function deleteConcentration() {
+        $id = $this->input->post('id');
+        $this->concentration_model->delete($id);
         $return_data['success'] = 1;
         echo json_encode($return_data);
     }
