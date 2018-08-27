@@ -9,18 +9,7 @@
 			<li>Currencies</li>
 			
 		</ol>
-		<!-- end breadcrumb -->
-
-		<!-- You can also add more buttons to the
-		ribbon for further usability
-
-		Example below:
-
-		<span class="ribbon-button-alignment pull-right" style="margin-right:25px">
-			<a href="#" id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa fa-grid"></i> Change Grid</a>
-			<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa fa-plus"></i> Add</span>
-			<button id="search" class="btn btn-ribbon" data-title="search"><i class="fa fa-search"></i> <span class="hidden-mobile">Search</span></button>
-		</span> -->
+	
 
 	</div>
 	<!-- END RIBBON -->
@@ -63,12 +52,13 @@
 					<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
 						<thead>			                
 							<tr>
-								<th data-hide="phone">ID</th>
-								<th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
-								<th data-hide="phone">Short Key</th>
+								<th >ID</th>
+								<th ><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
+								<th >Short Key</th>
 								<th>Symbol</th>
-								<th data-hide="phone,tablet">Enabled</th>
-								<th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar txt-color-blue hidden-md hidden-sm hidden-xs"></i>Created Date</th>
+								<th >Enabled</th>
+								<th >Creation</th>
+								<th>Last Modified</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -101,7 +91,8 @@
 												<option value="0"  <?=$currency['enabled'] == '0' ? 'selected': ''?>>No</option>
 											</select>
 										</td>
-										<td><?=$currency['creation']?></td>
+										<td><span  data-currency-id="<?=$currency['id']?>"><?=$currency['creation']?></span></td>
+										<td><span  data-currency-id="<?=$currency['id']?>"><?=$currency['last_modified']?></span></td>
 										<td>
 											<button class="hide btn btn-success savecurrencybtn" data-currency-id="<?=$currency['id']?>" style="padding: 6px 12px;">Save</button>
 											<button class="hide btn btn-danger cancelcurrencybtn" data-currency-id="<?=$currency['id']?>" style="padding: 6px 12px;">Cancel</button>
@@ -183,10 +174,7 @@ $(document).ready(function() {
 		 `);
 	});
 
-	$("#addnewcancelbtn").click(function(){
-		// addnewtr.addClass('hide');
-		alert();
-	});
+
 
 	$(document).on('click', '#addnewcancelbtn', function(){
 		$("#addnewtr").remove();

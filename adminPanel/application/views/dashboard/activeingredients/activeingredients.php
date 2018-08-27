@@ -87,8 +87,30 @@
 											<input  data-ingredient-id="<?=$ingredient['id']?>" type="text" name="" value="<?=$ingredient['name']?>" class="form-control hide edit_name" >
 										</td>
 										<td>
-											<span  data-ingredient-id="<?=$ingredient['id']?>"><?=$ingredient['description']?></span>
-											<input  data-ingredient-id="<?=$ingredient['id']?>" type="text" name="" value="<?=$ingredient['description']?>" class="form-control hide edit_description">
+											<span  data-ingredient-id="<?=$ingredient['id']?>" class='description-short'>
+												<div>
+													<?php
+														// $ingredient['description'];
+														echo word_limiter($ingredient['description'], 20, '');
+													?>
+												</div>
+											</span>
+
+											<span  data-ingredient-id="<?=$ingredient['id']?>" class='description-all hide'>
+												<div>
+													<?php
+														
+														echo $ingredient['description'];
+													?>
+												</div>
+											</span>
+											<?php 
+												$shown = word_limiter($ingredient['description'], 20, '');
+												if(strlen($shown) + 1 < strlen($ingredient['description'])) {
+											?>
+											<span data-ingredient-id="<?=$ingredient['id']?>" class='description-show-more' style="cursor: pointer;"><u>[show more]</u></span>
+												<?php } ?>
+											<textarea  data-ingredient-id="<?=$ingredient['id']?>" type="text" name="" class="form-control hide edit_description"> <?=$ingredient['description']?> </textarea>
 										</td>
 										
 										<td>
@@ -239,6 +261,8 @@ $(document).ready(function() {
 		});
 	});
 
+	var cur_editor = [];
+
 	$(".editingredientbtn").click(function(){
 		var ingredient_id = $(this).data('ingredient-id');
 		$('span[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
@@ -248,6 +272,27 @@ $(document).ready(function() {
 		$('.deleteingredientbtn[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
 		$('.saveingredientbtn[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		$('.cancelingredientbtn[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
+
+		// $( '.edit_description[data-ingredient-id="' + ingredient_id + '"').ckeditor( function() { 
+		//     // Callback function code.
+		// }, { 
+		//     // Config options here
+		// } );
+		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).removeClass('hide');
+		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).click( function(){
+		   	cur_editor[ingredient_id] =  $( this ).ckeditor( function() {
+		        console.log( 'Instance ' + this.name + ' created' );
+		    }, {
+		        on: {
+		            blur: function( evt ) {
+		                console.log( 'Instance ' + this.name + ' destroyed' );
+		                console.log(this);
+		                // this.destroy();
+		            }
+		        }
+		    } );
+		} );
+
 	});
 
 
@@ -261,6 +306,9 @@ $(document).ready(function() {
 		$('span[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		$('input[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
 		$('select[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
+		
+		cur_editor[ingredient_id].editor.destroy();
+		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).addClass('hide');
 	});
 
 	$(".saveingredientbtn").click(function() {
@@ -283,11 +331,12 @@ $(document).ready(function() {
 		}
 
 
-	
+		// alert(edit_description);
 
 		if(edit_name == "" || edit_description == "") {
 			return;
 		}
+
 
 		$.ajax({
 			url : "<?=base_url()?>ActiveIngredients/postEdit",
@@ -338,8 +387,15 @@ $(document).ready(function() {
 
 		});
 		e.preventDefault();
-	})
+	});
 
+	$(document).on('click', '.description-show-more', function(){
+		// alert();
+		var ingredient_id = $(this).data('ingredient-id');
+		$('.description-short[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
+		$('.description-all[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
+		$(this).addClass('hide');
+	});
 
 });
 

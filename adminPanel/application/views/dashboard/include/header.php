@@ -81,6 +81,9 @@
 		<!-- JARVIS WIDGETS -->
 		<script src="<?=base_url()?>assets/js/smartwidgets/jarvis.widget.min.js"></script>
 
+		<script src="<?=base_url()?>assets/js/plugin/ckeditor/ckeditor.js"></script>
+		<script src="<?=base_url()?>assets/js/plugin/ckeditor/adapters/jquery.js"></script>
+
 
 	</head>
 

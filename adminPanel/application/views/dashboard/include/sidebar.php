@@ -85,7 +85,7 @@
 					<li class="<?php if($view == 'dashboard/languages/languages') echo 'active';?>">
 						<a href="<?=base_url()?>Languages" title="">
 							<i class="fa fa-lg fa-fw fa-xing-square"></i>
-							<span class="menu-item-parent">Language</span>
+							<span class="menu-item-parent">Languages</span>
 						</a>
 					</li>
 

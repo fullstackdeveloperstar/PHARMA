@@ -230,7 +230,8 @@ $(document).ready(function() {
 		});
 	});
 
-	$(".editlanguagebtn").click(function(){
+	$(document).on('click','.editlanguagebtn', function(){
+	// $(".editlanguagebtn").click(function(){
 		var language_id = $(this).data('language-id');
 		$('span[data-language-id="' + language_id + '"').addClass('hide');
 		$('input[data-language-id="' + language_id + '"').removeClass('hide');
@@ -242,8 +243,8 @@ $(document).ready(function() {
 	});
 
 
-
-	$(".cancellanguagebtn").click(function(){
+	$(document).on('click','.cancellanguagebtn', function(){
+	// $(".cancellanguagebtn").click(function(){
 		var language_id = $(this).data('language-id');
 		$('.editlanguagebtn[data-language-id="' + language_id + '"').removeClass('hide');
 		$('.deletelanguagebtn[data-language-id="' + language_id + '"').removeClass('hide');
@@ -254,7 +255,8 @@ $(document).ready(function() {
 		$('select[data-language-id="' + language_id + '"').addClass('hide');
 	});
 
-	$(".savelanguagebtn").click(function() {
+	$(document).on('click','.savelanguagebtn', function(){
+	// $(".savelanguagebtn").click(function() {
 		var language_id = $(this).data('language-id');
 		var edit_name = $('.edit_name[data-language-id="' + language_id + '"').val();
 		var edit_short_key = $('.edit_short_key[data-language-id="' + language_id + '"').val();
@@ -299,8 +301,8 @@ $(document).ready(function() {
 
 	});
 
-
-	$(".deletelanguagebtn").click(function(e) {
+	$(document).on('click','.deletelanguagebtn', function(){
+	// $(".deletelanguagebtn").click(function(e) {
 		var language_id = $(this).data('language-id');
 		$.SmartMessageBox({
 			title : "Delete language",
