@@ -87,23 +87,23 @@
 											<input  data-ingredient-id="<?=$ingredient['id']?>" type="text" name="" value="<?=$ingredient['name']?>" class="form-control hide edit_name" >
 										</td>
 										<td>
-											<span  data-ingredient-id="<?=$ingredient['id']?>" class='description-short'>
+											<div  data-ingredient-id="<?=$ingredient['id']?>" class='description-short'>
 												<div>
 													<?php
 														// $ingredient['description'];
 														echo word_limiter($ingredient['description'], 20, '');
 													?>
 												</div>
-											</span>
+											</div>
 
-											<span  data-ingredient-id="<?=$ingredient['id']?>" class='description-all hide'>
+											<div  data-ingredient-id="<?=$ingredient['id']?>" class='description-all hide'>
 												<div>
 													<?php
 														
 														echo $ingredient['description'];
 													?>
 												</div>
-											</span>
+											</div>
 											<?php 
 												$shown = word_limiter($ingredient['description'], 20, '');
 												if(strlen($shown) + 1 < strlen($ingredient['description'])) {
@@ -272,13 +272,9 @@ $(document).ready(function() {
 		$('.deleteingredientbtn[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
 		$('.saveingredientbtn[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		$('.cancelingredientbtn[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
-
-		// $( '.edit_description[data-ingredient-id="' + ingredient_id + '"').ckeditor( function() { 
-		//     // Callback function code.
-		// }, { 
-		//     // Config options here
-		// } );
 		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).removeClass('hide');
+		$('.description-short[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
+		$('.description-all[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
 		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).click( function(){
 		   	cur_editor[ingredient_id] =  $( this ).ckeditor( function() {
 		        console.log( 'Instance ' + this.name + ' created' );
@@ -306,6 +302,7 @@ $(document).ready(function() {
 		$('span[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		$('input[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
 		$('select[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
+		$('.description-all[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		
 		cur_editor[ingredient_id].editor.destroy();
 		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).addClass('hide');
