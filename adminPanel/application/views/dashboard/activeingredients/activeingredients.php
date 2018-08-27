@@ -65,7 +65,7 @@
 							<tr>
 								<th data-hide="phone">ID</th>
 								<th>Name</th>
-								<th>Description</th>
+								<th style="max-width: 50%;">Description</th>
 								<th>Enabled</th>
 								<th>Creation</th>
 								<th>Last Modified</th>
@@ -96,19 +96,13 @@
 												</div>
 											</div>
 
-											<div  data-ingredient-id="<?=$ingredient['id']?>" class='description-all hide'>
-												<div>
-													<?php
-														
-														echo $ingredient['description'];
-													?>
-												</div>
-											</div>
+											
 											<?php 
 												$shown = word_limiter($ingredient['description'], 20, '');
 												if(strlen($shown) + 1 < strlen($ingredient['description'])) {
 											?>
-											<span data-ingredient-id="<?=$ingredient['id']?>" class='description-show-more' style="cursor: pointer;"><u>[show more]</u></span>
+											<!-- <span data-ingredient-id="<?=$ingredient['id']?>" class='description-show-more' style="cursor: pointer;"><u>[show more]</u></span> -->
+											<a data-ingredient-id="<?=$ingredient['id']?>" class="description-show-more" href="#" title="Read More" data-html="true"  rel="popover" data-toggle="popover" data-content='<?=$ingredient["description"]?>'>Show More</a>
 												<?php } ?>
 											<textarea  data-ingredient-id="<?=$ingredient['id']?>" type="text" name="" class="form-control hide edit_description"> <?=$ingredient['description']?> </textarea>
 										</td>
@@ -180,7 +174,16 @@ $(document).ready(function() {
 		},
 		"drawCallback" : function(oSettings) {
 			responsiveHelper_dt_basic.respond();
-		}
+		},
+		"columnDefs": [
+			{ "width": "10%", "targets": 0 },
+			{ "width": "10%", "targets": 1 },
+		    { "width": "40%", "targets": 2 },
+		    { "width": "10%", "targets": 3 },
+		    { "width": "10%", "targets": 4 },
+		    { "width": "10%", "targets": 5 },
+		    { "width": "10%", "targets": 6 }
+		  ]
 	});
 	
 	var addnewtr = $("#addnewtr");
@@ -273,8 +276,9 @@ $(document).ready(function() {
 		$('.saveingredientbtn[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		$('.cancelingredientbtn[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).removeClass('hide');
+		$('.description-show-more[data-ingredient-id="' + ingredient_id + '"' ).addClass('hide');
 		$('.description-short[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
-		$('.description-all[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
+		// $('.description-all[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
 		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).click( function(){
 		   	cur_editor[ingredient_id] =  $( this ).ckeditor( function() {
 		        console.log( 'Instance ' + this.name + ' created' );
@@ -302,10 +306,11 @@ $(document).ready(function() {
 		$('span[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		$('input[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
 		$('select[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
-		$('.description-all[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
+		$('.description-short[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
 		
 		cur_editor[ingredient_id].editor.destroy();
 		$('.edit_description[data-ingredient-id="' + ingredient_id + '"' ).addClass('hide');
+		$('.description-show-more[data-ingredient-id="' + ingredient_id + '"' ).removeClass('hide');
 	});
 
 	$(".saveingredientbtn").click(function() {
@@ -388,12 +393,29 @@ $(document).ready(function() {
 
 	$(document).on('click', '.description-show-more', function(){
 		// alert();
-		var ingredient_id = $(this).data('ingredient-id');
-		$('.description-short[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
-		$('.description-all[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
-		$(this).addClass('hide');
+		// var ingredient_id = $(this).data('ingredient-id');
+		// $('.description-short[data-ingredient-id="' + ingredient_id + '"').addClass('hide');
+		// $('.description-all[data-ingredient-id="' + ingredient_id + '"').removeClass('hide');
+		// $(this).addClass('hide');
+	});
+
+	$(document).ready(function(){
+	    $('[data-toggle="popover"]').popover();   
 	});
 
 });
 
 </script>
+
+<style type="text/css">
+	.popover-content{
+		padding: 10px;
+	    max-height: 300px;
+	    
+	    overflow: scroll;
+	}
+
+	.popover {
+		min-width: 500px;
+	}
+</style>
