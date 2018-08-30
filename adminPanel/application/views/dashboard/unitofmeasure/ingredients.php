@@ -9,41 +9,30 @@
 					<li>Unit of Measure</li>
 					<li>Active Ingredients Concentration U. of M.</li>
 				</ol>
-				<!-- end breadcrumb -->
-
-				<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right" style="margin-right:25px">
-					<a href="#" id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa fa-grid"></i> Change Grid</a>
-					<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa fa-plus"></i> Add</span>
-					<button id="search" class="btn btn-ribbon" data-title="search"><i class="fa fa-search"></i> <span class="hidden-mobile">Search</span></button>
-				</span> -->
+				
 
 			</div>
 			<!-- END RIBBON -->
 
-<!-- #MAIN CONTENT -->
-	<div id='content'>
-		<div class="row">
-			<!-- col -->
-			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-				<h1 class="page-title txt-color-blueDark">
-					
-					<!-- PAGE HEADER -->
-					<i class="fa-fw fa fa-home"></i> 
-						Active Ingredients Concentration U. of M.
-				</h1>
-			</div>
-			<!-- end col -->	
-		</div>
+			<!-- #MAIN CONTENT -->
+			<div id='content'>
+				<div class="row">
+					<!-- col -->
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+						<h1 class="page-title txt-color-blueDark">
+							
+							<!-- PAGE HEADER -->
+							<i class="fa-fw fa fa-home"></i> 
+								Active Ingredients Concentration U. of M.
+						</h1>
+					</div>
+					<!-- end col -->	
+				</div>
 
 
 
 
-<!-- Widget ID (each widget will need unique ID)-->
+		<!-- Widget ID (each widget will need unique ID)-->
 		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
 			
 			<header>
@@ -66,6 +55,7 @@
 							<tr>
 								<th data-hide="phone">ID</th>
 								<th>Unit of Measure</th>
+								<th>Language</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -82,6 +72,28 @@
 										<td>
 											<span data-concentration-id="<?=$concentration['id']?>"><?=$concentration['unit_of_measure']?></span>
 											<input  data-concentration-id="<?=$concentration['id']?>" type="text" name="" value="<?=$concentration['unit_of_measure']?>" class="form-control hide edit_unit_of_measure" >
+										</td>
+
+										<td>
+											<span>
+												<?php 
+													foreach ($languages as $language) {
+														if($language['id'] == $concentration['language_id'])
+														{
+															echo '<span data-concentration-id="'.$concentration['id'].'">'.$language['name'].'</span>';
+														}	
+													}
+												?>
+											</span>
+											<select class="form-control hide edit-language"  data-concentration-id="<?=$concentration['id']?>">
+												<?php
+													foreach ($languages as $language) {
+														?>
+														<option <?php echo $language['id'] == $concentration['language_id']? 'selected': '';?> value="<?=$language['id']?>" ><?=$language['name']?></option>
+														<?php
+													}
+												?>
+											</select>
 										</td>
 										
 										<td>
@@ -145,11 +157,25 @@ $(document).ready(function() {
 		 // addnewtr.removeClass('hide');
 		 if(is_add_new) return;
 		 is_add_new = true;
+		  var lang_str = `
+		 	<td>
+			 	<select id="addlanguage" class="form-control add-language">
+					<?php
+						foreach ($languages as $language) {
+							?>
+							<option value="<?=$language['id']?>" ><?=$language['name']?></option>
+							<?php
+						}
+					?>
+				</select>
+			</td>
+		 `;
 		 $("#concentration_table_tbody").prepend(`
 		 	<tr class="smart-form" id="addnewtr">
 				<td></td>
-				<td><input type="text" class="form-control" name="" id="addnew_unit_of_measure"></td>
-				<td>
+				<td><input type="text" class="form-control" name="" id="addnew_unit_of_measure"></td>`+
+				lang_str+
+				`<td>
 					<div class="btn btn-success" id="addnewaddbtn" style="padding: 6px 12px;">Add</div>
 					<div class="btn btn-danger" id="addnewcancelbtn" style="padding: 6px 12px;">Cancel</div>
 				</td>
@@ -166,8 +192,9 @@ $(document).ready(function() {
 
 	$(document).on('click', '#addnewaddbtn', function() {
 		var addnew_unit_of_measure = $("#addnew_unit_of_measure").val();
-		
+		var addlanguage = $("#addlanguage").val();
 
+		
 		if(addnew_unit_of_measure == ''){
 			$("#addnew_unit_of_measure").parent().addClass('state-error');
 		}else{
@@ -184,6 +211,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: {
 				unit_of_measure: addnew_unit_of_measure,
+				language_id : addlanguage
 			},
 			success: function(res){
 				// console.log(res);
@@ -202,6 +230,7 @@ $(document).ready(function() {
 		$('.deleteconcentrationbtn[data-concentration-id="' + concentration_id + '"').addClass('hide');
 		$('.saveconcentrationbtn[data-concentration-id="' + concentration_id + '"').removeClass('hide');
 		$('.cancelconcentrationbtn[data-concentration-id="' + concentration_id + '"').removeClass('hide');
+		$('select[data-concentration-id="' + concentration_id + '"').removeClass('hide');
 	});
 
 
@@ -214,11 +243,13 @@ $(document).ready(function() {
 		$('.cancelconcentrationbtn[data-concentration-id="' + concentration_id + '"').addClass('hide');
 		$('span[data-concentration-id="' + concentration_id + '"').removeClass('hide');
 		$('input[data-concentration-id="' + concentration_id + '"').addClass('hide');
+		$('select[data-concentration-id="' + concentration_id + '"').addClass('hide');
 	});
 
 	$(".saveconcentrationbtn").click(function() {
 		var concentration_id = $(this).data('concentration-id');
 		var edit_unit_of_measure = $('.edit_unit_of_measure[data-concentration-id="' + concentration_id + '"').val();
+		var edit_language = $('.edit-language[data-concentration-id="' + concentration_id + '"').val();
 	
 		if(edit_unit_of_measure == "") {
 			$('.edit_unit_of_measure[data-concentration-id="' + concentration_id + '"').parent().addClass('state-error');
@@ -237,6 +268,7 @@ $(document).ready(function() {
 			data : {
 				id: concentration_id,
 				unit_of_measure: edit_unit_of_measure,
+				language_id: edit_language
 			},
 			success : function(res){
 				if(res.success == '1'){

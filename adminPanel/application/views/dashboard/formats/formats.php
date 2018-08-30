@@ -11,39 +11,30 @@
 				</ol>
 				<!-- end breadcrumb -->
 
-				<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right" style="margin-right:25px">
-					<a href="#" id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa fa-grid"></i> Change Grid</a>
-					<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa fa-plus"></i> Add</span>
-					<button id="search" class="btn btn-ribbon" data-title="search"><i class="fa fa-search"></i> <span class="hidden-mobile">Search</span></button>
-				</span> -->
+				
 
 			</div>
 			<!-- END RIBBON -->
 
-<!-- #MAIN CONTENT -->
-	<div id='content'>
-		<div class="row">
-			<!-- col -->
-			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-				<h1 class="page-title txt-color-blueDark">
-					
-					<!-- PAGE HEADER -->
-					<i class="fa-fw fa fa-home"></i> 
-						Formats
-				</h1>
-			</div>
-			<!-- end col -->	
-		</div>
+			<!-- #MAIN CONTENT -->
+			<div id='content'>
+				<div class="row">
+					<!-- col -->
+					<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+						<h1 class="page-title txt-color-blueDark">
+							
+							<!-- PAGE HEADER -->
+							<i class="fa-fw fa fa-home"></i> 
+								Formats
+						</h1>
+					</div>
+					<!-- end col -->	
+				</div>
 
 
 
 
-<!-- Widget ID (each widget will need unique ID)-->
+		<!-- Widget ID (each widget will need unique ID)-->
 		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
 			
 			<header>
@@ -67,6 +58,8 @@
 								<th>ID</th>
 								<th>Name</th>
 								<th>Description</th>
+								<th>Confection quantity units of measure</th>
+								<th>Language</th>
 								<th>Last Modified</th>
 								<th>Creation</th>
 								<th>Actions</th>
@@ -90,6 +83,48 @@
 										<td>
 											<span data-format-id="<?=$format['id']?>"><?=$format['description']?></span>
 											<input  data-format-id="<?=$format['id']?>" type="text" name="" value="<?=$format['description']?>" class="form-control hide edit_description">
+										</td>
+
+										<td>
+											<?php 
+												foreach ($confections as $confection) {
+													if($confection['id'] == $format['confection_quantity_units_of_measure_id'])
+													{
+														echo '<span data-format-id="'.$format['id'].'">'.$confection['unit_of_measure'].'</span>';
+													}	
+												}
+											?>
+
+											<select class="form-control hide edit-confection"  data-format-id="<?=$format['id']?>">
+												<?php
+													foreach ($confections as $confection) {
+														?>
+														<option <?php echo $confection['id'] == $format['confection_quantity_units_of_measure_id']? 'selected': '';?> value="<?=$confection['id']?>" ><?=$confection['unit_of_measure']?></option>
+														<?php
+													}
+												?>
+											</select>
+										</td>
+
+										<td>
+											<?php 
+												foreach ($languages as $language) {
+													if($language['id'] == $format['languages_id'])
+													{
+														echo '<span data-format-id="'.$format['id'].'">'.$language['name'].'</span>';
+													}	
+												}
+											?>
+
+											<select class="form-control hide edit-language"  data-format-id="<?=$format['id']?>">
+												<?php
+													foreach ($languages as $language) {
+														?>
+														<option <?php echo $language['id'] == $format['languages_id']? 'selected': '';?> value="<?=$language['id']?>" ><?=$language['name']?></option>
+														<?php
+													}
+												?>
+											</select>
 										</td>
 
 										<th>
@@ -161,11 +196,41 @@ $(document).ready(function() {
 		 // addnewtr.removeClass('hide');
 		 if(is_add_new) return;
 		 is_add_new = true;
+		  var lang_str = `
+		 	<td>
+			 	<select id="addlanguage" class="form-control add-language">
+					<?php
+						foreach ($languages as $language) {
+							?>
+							<option value="<?=$language['id']?>" ><?=$language['name']?></option>
+							<?php
+						}
+					?>
+				</select>
+			</td>
+		 `;
+
+		 var confection_str = `
+		 	<td>
+			 	<select id="addconfection" class="form-control add-confection">
+					<?php
+						foreach ($confections as $confection) {
+							?>
+							<option value="<?=$confection['id']?>" ><?=$confection['unit_of_measure']?></option>
+							<?php
+						}
+					?>
+				</select>
+			</td>
+		 `;
+
 		 $("#format_table_tbody").prepend(`
 		 	<tr class="smart-form" id="addnewtr">
 				<td></td>
 				<td><input type="text" class="form-control" name="" id="addnew_name"></td>
 				<td><input type="text" class="form-control" name="" id="addnew_description"></td>
+				` + confection_str + `
+				` + lang_str + `
 				<td></td>
 				<td></td>
 				<td>
@@ -186,6 +251,8 @@ $(document).ready(function() {
 	$(document).on('click', '#addnewaddbtn', function() {
 		var addnew_name = $("#addnew_name").val();
 		var addnew_description = $("#addnew_description").val();
+		var addlanguage = $("#addlanguage").val();
+		var addconfection = $("#addconfection").val();
 		
 
 		if(addnew_name == ''){
@@ -210,7 +277,9 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: {
 				name: addnew_name,
-				description : addnew_description
+				description : addnew_description,
+				confection: addconfection,
+				language: addlanguage
 			},
 			success: function(res){
 				// console.log(res);
@@ -249,6 +318,8 @@ $(document).ready(function() {
 		var format_id = $(this).data('format-id');
 		var edit_name = $('.edit_name[data-format-id="' + format_id + '"').val();
 		var edit_description = $('.edit_description[data-format-id="' + format_id + '"').val();
+		var edit_confection = $('.edit-confection[data-format-id="' + format_id + '"').val();
+		var edit_language = $('.edit-language[data-format-id="' + format_id + '"').val();
 	
 		if(edit_name == "") {
 			$('.edit_name[data-format-id="' + format_id + '"').parent().addClass('state-error');
@@ -273,7 +344,9 @@ $(document).ready(function() {
 			data : {
 				id: format_id,
 				name: edit_name,
-				description: edit_description
+				description: edit_description,
+				confection: edit_confection,
+				language: edit_language
 			},
 			success : function(res){
 				if(res.success == '1'){

@@ -1,30 +1,28 @@
+<?php
+	function isActiveLanguage($lang_id){
+		foreach ($languages as $language) {
+			if($language['id'] ==  $lang_id) return true;
+		}
+		return false;
+	}
+?>
 <!-- #MAIN PANEL -->
-		<div id="main" role="main">
+<div id="main" role="main">
 
-			<!-- RIBBON -->
-			<div id="ribbon">
+	<!-- RIBBON -->
+	<div id="ribbon">
 
-				<!-- breadcrumb -->
-				<ol class="breadcrumb">
-					<li>Unit of Measure</li>
-					<li>Confection Quantity U. of M.</li>
-				</ol>
-				<!-- end breadcrumb -->
+		<!-- breadcrumb -->
+		<ol class="breadcrumb">
+			<li>Unit of Measure</li>
+			<li>Confection Quantity U. of M.</li>
+		</ol>
+		
 
-				<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right" style="margin-right:25px">
-					<a href="#" id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa fa-grid"></i> Change Grid</a>
-					<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa fa-plus"></i> Add</span>
-					<button id="search" class="btn btn-ribbon" data-title="search"><i class="fa fa-search"></i> <span class="hidden-mobile">Search</span></button>
-				</span> -->
-
-			</div>
-			<!-- END RIBBON -->
-<!-- #MAIN CONTENT -->
+	</div>
+	<!-- END RIBBON -->
+	
+	<!-- #MAIN CONTENT -->
 	<div id='content'>
 		<div class="row">
 			<!-- col -->
@@ -42,7 +40,7 @@
 
 
 
-<!-- Widget ID (each widget will need unique ID)-->
+		<!-- Widget ID (each widget will need unique ID)-->
 		<div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
 			
 			<header>
@@ -65,6 +63,7 @@
 							<tr>
 								<th data-hide="phone">ID</th>
 								<th>Unit of Measure</th>
+								<th>Language</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -81,6 +80,28 @@
 										<td>
 											<span data-confection-id="<?=$confection['id']?>"><?=$confection['unit_of_measure']?></span>
 											<input  data-confection-id="<?=$confection['id']?>" type="text" name="" value="<?=$confection['unit_of_measure']?>" class="form-control hide edit_unit_of_measure" >
+										</td>
+
+										<td>
+											
+											<?php 
+												foreach ($languages as $language) {
+													if($language['id'] == $confection['language_id'])
+													{
+														echo '<span data-confection-id="'.$confection['id'].'">'.$language['name'].'</span>';
+													}	
+												}
+											?>
+											
+											<select class="form-control hide edit-language"  data-confection-id="<?=$confection['id']?>">
+												<?php
+													foreach ($languages as $language) {
+														?>
+														<option <?php echo $language['id'] == $confection['language_id']? 'selected': '';?> value="<?=$language['id']?>" ><?=$language['name']?></option>
+														<?php
+													}
+												?>
+											</select>
 										</td>
 										
 										<td>
@@ -144,11 +165,25 @@ $(document).ready(function() {
 		 // addnewtr.removeClass('hide');
 		 if(is_add_new) return;
 		 is_add_new = true;
+		 var lang_str = `
+		 	<td>
+			 	<select id="addlanguage" class="form-control add-language">
+					<?php
+						foreach ($languages as $language) {
+							?>
+							<option value="<?=$language['id']?>" ><?=$language['name']?></option>
+							<?php
+						}
+					?>
+				</select>
+			</td>
+		 `;
 		 $("#confection_table_tbody").prepend(`
 		 	<tr class="smart-form" id="addnewtr">
 				<td></td>
-				<td><input type="text" class="form-control" name="" id="addnew_unit_of_measure"></td>
-				<td>
+				<td><input type="text" class="form-control" name="" id="addnew_unit_of_measure"></td>`+
+				lang_str+
+				`<td>
 					<div class="btn btn-success" id="addnewaddbtn" style="padding: 6px 12px;">Add</div>
 					<div class="btn btn-danger" id="addnewcancelbtn" style="padding: 6px 12px;">Cancel</div>
 				</td>
@@ -165,7 +200,7 @@ $(document).ready(function() {
 
 	$(document).on('click', '#addnewaddbtn', function() {
 		var addnew_unit_of_measure = $("#addnew_unit_of_measure").val();
-		
+		var addlanguage = $("#addlanguage").val();
 
 		if(addnew_unit_of_measure == ''){
 			$("#addnew_unit_of_measure").parent().addClass('state-error');
@@ -183,6 +218,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: {
 				unit_of_measure: addnew_unit_of_measure,
+				language_id : addlanguage
 			},
 			success: function(res){
 				// console.log(res);
@@ -220,12 +256,15 @@ $(document).ready(function() {
 	$(".saveconfectionbtn").click(function() {
 		var confection_id = $(this).data('confection-id');
 		var edit_unit_of_measure = $('.edit_unit_of_measure[data-confection-id="' + confection_id + '"').val();
-	
+		var edit_language = $('.edit-language[data-confection-id="' + confection_id + '"').val();
+
+
 		if(edit_unit_of_measure == "") {
 			$('.edit_unit_of_measure[data-confection-id="' + confection_id + '"').parent().addClass('state-error');
 		} else {
 			$('.edit_unit_of_measure[data-confection-id="' + confection_id + '"').parent().removeClass('state-error');
 		}
+
 
 		if(edit_unit_of_measure == "") {
 			return;
@@ -238,6 +277,7 @@ $(document).ready(function() {
 			data : {
 				id: confection_id,
 				unit_of_measure: edit_unit_of_measure,
+				language_id: edit_language
 			},
 			success : function(res){
 				if(res.success == '1'){
