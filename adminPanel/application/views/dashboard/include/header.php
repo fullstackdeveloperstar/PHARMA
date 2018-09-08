@@ -83,6 +83,7 @@
 
 		<script src="<?=base_url()?>assets/js/plugin/ckeditor/ckeditor.js"></script>
 		<script src="<?=base_url()?>assets/js/plugin/ckeditor/adapters/jquery.js"></script>
+		<script src="<?=base_url()?>assets/js/plugin/jquery-validate/jquery.validate.min.js"></script>
 
 
 	</head>

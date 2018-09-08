@@ -6,11 +6,13 @@ class ActiveIngredients extends DashboardBase
     {
         parent::__construct();
         $this->load->model('activeingredients_model');
+        $this->load->model('languages_model');
     }
 
     public function index()
     {
     	$data['ingredients'] = $this->activeingredients_model->getAll();
+        $data['languages'] = $this->languages_model->getAll();
     	$this->loadView('dashboard/activeingredients/activeingredients', $data);
     }
 
@@ -19,7 +21,7 @@ class ActiveIngredients extends DashboardBase
     	$data['name'] = $this->input->post('name');
     	$data['description'] = $this->input->post('description');
     	$data['enabled'] = $this->input->post('enabled');
-    	$data['language_id'] = 1;
+    	$data['language_id'] = $this->input->post('language_id');;
     	$this->activeingredients_model->add($data);
     	$return_data['success'] = 1;
     	echo json_encode($return_data);
@@ -30,6 +32,7 @@ class ActiveIngredients extends DashboardBase
     	$data['name'] = $this->input->post('name');
     	$data['description'] = $this->input->post('description');
     	$data['enabled'] = $this->input->post('enabled');
+        $data['language_id'] = $this->input->post('language_id');;
     	$this->activeingredients_model->update($ingredient_id, $data);
     	$return_data['success'] = 1;
     	echo json_encode($return_data);

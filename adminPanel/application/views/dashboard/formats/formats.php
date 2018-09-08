@@ -196,7 +196,7 @@ $(document).ready(function() {
 		 // addnewtr.removeClass('hide');
 		 if(is_add_new) return;
 		 is_add_new = true;
-		  var lang_str = `
+		 var lang_str = `
 		 	<td>
 			 	<select id="addlanguage" class="form-control add-language">
 					<?php

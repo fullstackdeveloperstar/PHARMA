@@ -7,16 +7,16 @@
 		<!-- breadcrumb -->
 		<ol class="breadcrumb">
 			<li>Vendors</li>
-			<li>Manage Vendors</li>
+			<li>Locations</li>
 		</ol>
 		<!-- end breadcrumb -->
+
 
 	</div>
 	<!-- END RIBBON -->
 
 	<!-- #MAIN CONTENT -->
-
-	<div id='content'>
+	<div id="content">
 		<div class="row">
 			<!-- col -->
 			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
@@ -24,12 +24,14 @@
 					
 					<!-- PAGE HEADER -->
 					<i class="fa-fw fa fa-home"></i> 
-						Manage Vendors
+						Locations
+						<a class="btn btn-success" href="<?=base_url()?>Vendors/addnewlocation">Add New Location</a>
 				</h1>
 			</div>
 			<!-- end col -->
-			
 		</div>
+			
+
 		<!-- end row -->
 		
 		<!-- END #MAIN CONTENT -->
@@ -53,68 +55,88 @@
 					<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
 						<thead>			                
 							<tr>
-								<th >ID</th>
+								<th>ID</th>
 								<th>Vendor Name</th>
-								<th>Vendor Website Url</th>
-								<th>Default Currency</th>
-								<th>Pharmacomparison Affiliation Service</th>
-								<th>Affiliation Category</th>
-								<th>Affiliation Vendor Id</th>
-								<th>Affiliation Service</th>
-								<th>Remark</th>
+								<th>Address</th>
+								<th>Zip</th>
+								<th>Country</th>
+								<th>Phone</th>
+								<th>Fax</th>
+								<th>Vendor Email</th>
+								<th>Reference People</th>
+								<th>Minimum Domestic Delivery Cost</th>
+								<th>Minimum Domestic Delivery Cost Currency</th>
+								<th>Minimum International Delivery Cost	</th>
+								<th>Minimum International Delivery Currencies</th>
 								<th>Language</th>
+								<th>Enabled</th>
 								<th>Last Modified</th>
 								<th>Creation</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
-						<tbody id="currency_table_tbody">
+						<tbody>
 							<?php
 							$i = 0;
-							foreach ($vendors as $vendor) {
-								$i ++;
+							foreach ($locations as $location) {
+								$i++;
 								?>
-								<td><?=$i?></td>
-								<td><?=$vendor['vendor_name']?></td>
-								<td><?=$vendor['vendor_web_site_url']?></td>
-								<td>
-									<?php
-									foreach ($currencies as $currency) {
-										if($currency['id'] == $vendor['default_currencies_id']) {
-											echo $currency['name'];
+								<tr>
+									<td><?=$i?></td>
+									<td><?=$vendor['vendor_name']?></td>
+									<td><?=$location['address']?></td>
+									<td><?=$location['zip']?></td>
+									<td><?=$location['country']?></td>
+									<td><?=$location['phone']?></td>
+									<td><?=$location['fax']?></td>
+									<td><?=$location['vendor_email']?></td>
+									<td>
+										<?php
+										foreach ($peoples as $people) {
+											if ($people['id'] == $location['reference_people_id']) {
+												echo $people['username'];
+											}
 										}
-									}
-									?>
-								</td>
-								<td><?=$vendor['pharmacomparison_affiliation_service']?></td>
-								<td><?=$vendor['affiliation_category']?></td>
-								<td><?=$vendor['affiliation_vendor_id']?></td>
-								<td>
-									<?php
-									foreach ($external_affiliation_services as $service) {
-										if($service['id'] == $vendor['external_affiliation_services_id']) {
-											echo $service['outsorced_provider_name'];
+										?>
+									</td>
+									<td><?=$location['minimum_domestic_delivery_cost']?></td>
+									<td>
+										<?php
+										foreach ($currencies as $currency) {
+											if($currency['id'] == $location['minimum_domestic_delivery_cost_currencies']) {
+												echo $currency['name'];
+											}
 										}
-									}
-									?>
-								</td>
-								<td><?=$vendor['remark']?></td>
-								<td>
-									<?php
-									foreach ($languages as $language) {
-										if($language['id'] == $vendor['languages_id']) {
-											echo $language['name'];
+										?>
+									</td>
+									<td><?=$location['minimum_international_delivery_cost']?></td>
+									<td>
+										<?php
+										foreach ($currencies as $currency) {
+											if($currency['id'] == $location['minimum_international_delivery_currencies']) {
+												echo $currency['name'];
+											}
 										}
-									}
-									?>
-								</td>
-								<td><?=$vendor['last_modified']?></td>
-								<td><?=$vendor['creation']?></td>
-								<td>
-									<a class="btn btn-success" href="<?=base_url()?>Vendors/editvendor/<?=$vendor['id']?>">Edit</a>
-									<a class="btn btn-primary" href="<?=base_url()?>Vendors/locations/<?=$vendor['id']?>">Locations</a>
-									<button class="btn btn-danger deletevendor" data-vendor-id="<?=$vendor['id']?>">Delete</button>
-								</td>
+										?>
+									</td>
+									<td>
+										<?php
+										foreach ($languages as $language) {
+											if($language['id'] == $location['languages_id']) {
+												echo $language['name'];
+											}
+										}
+									
+										?>	
+									</td>
+									<td><?=$location['enabled'] == 1 ? 'Yes': 'No'?></td>
+									<td><?=$location['last_modified']?></td>
+									<td><?=$location['creation']?></td>
+									<td>
+										<a class="btn btn-success" href="<?=base_url()?>Vendors/editlocation/<?=$vendor['id']?>/<?=$location['id']?>">Edit</a>
+										<button class="btn btn-danger deletelocation" data-location-id="<?=$location['id']?>">Delete</button>
+									</td>
+								</tr>
 								<?php
 							}
 							?>
@@ -162,21 +184,21 @@ $(document).ready(function() {
 		}
 	});
 
-	$(document).on('click','.deletevendor', function(){
+	$(document).on('click','.deletelocation', function(){
 	// $(".deletelanguagebtn").click(function(e) {
-		var vendor_id = $(this).data('vendor-id');
+		var location_id = $(this).data('vendor-id');
 		$.SmartMessageBox({
-			title : "Delete Vendor",
+			title : "Delete Location",
 			content : "Do you really want to Delete it?",
 			buttons : '[No][Yes]'
 		}, function(ButtonPressed) {
 			if (ButtonPressed === "Yes") {
 				$.ajax({
-					url : '<?=base_url()?>Vendors/deleteVendor', 
+					url : '<?=base_url()?>Vendors/deleteLocation', 
 					type: 'post',
 					dataType: 'json',
 					data : {
-						id: vendor_id
+						id: location_id
 					},
 					success : function(res) {
 						if(res.success == '1')

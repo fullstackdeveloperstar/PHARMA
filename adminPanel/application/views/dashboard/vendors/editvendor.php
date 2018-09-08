@@ -7,7 +7,7 @@
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
 					<li>Vendors</li>
-					<li>Add New Vendor</li>
+					<li>Edit Vendor</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -24,7 +24,7 @@
 						
 						<!-- PAGE HEADER -->
 						<i class="fa-fw fa fa-home"></i> 
-							Add New Vendor
+							Edit Vendor
 					</h1>
 				</div>
 				<!-- end col -->
@@ -42,7 +42,7 @@
 								
 			<header role="heading" class="ui-sortable-handle">
 				<span class="widget-icon"> <i class="fa fa-eye"></i> </span>
-				<h2>Add New Vendor Form</h2>
+				<h2>Edit New Vendor Form</h2>
 
 			</header>
 
@@ -59,55 +59,55 @@
 				<!-- widget content -->
 				<div class="widget-body">
 
-					<form method="post" action="<?=base_url()?>Vendors/postAddNewVendor" id='addnewform'>
+					<form method="post" action="<?=base_url()?>Vendors/postEidtVendor/<?=$vendor['id']?>" id='editform'>
 						<fieldset>
 							<div class="form-group">
 								<label>Vendor Name</label>
-								<input class="form-control" placeholder="Vendor Name" type="text" name="vendorname" required="">
+								<input class="form-control" placeholder="Vendor Name" type="text" name="vendor_name" required="" value="<?=$vendor['vendor_name']?>">
 							</div>
 							<div class="form-group">
 								<label>Vendor Website Url</label>
-								<input class="form-control" placeholder="Vendor Website Url" type="url" required="" name="vendor_website_url">
+								<input class="form-control" placeholder="Vendor Website Url" type="url" required="" name="vendor_web_site_url" value="<?=$vendor['vendor_web_site_url']?>">
 							</div>
 							<div class="form-group">
 								<label>Default Currency</label>
-								<select class="form-control" name="default_currency">
+								<select class="form-control" name="default_currencies_id">
 									<?php
 									foreach ($currencies as $currency) {
 										?>
-										<option value="<?=$currency['id']?>"><?=$currency['name']?></option>
+										<option value="<?=$currency['id']?>" <?= $currency['id'] == $vendor['default_currencies_id'] ? 'selected' : '' ?>><?=$currency['name']?></option>
 										<?php
 									}
 									?>
 								</select>
 							</div>
 
-							<!-- <div class="form-group">
+							<div class="form-group">
 								<label>Pharmacomparison Affiliation Service</label>
-								<input class="form-control" placeholder="Pharmacomparison Affiliation Service" type="text" required="" name="pharmacomparison_affiliation_service">
-							</div> -->
+								<input class="form-control" placeholder="Pharmacomparison Affiliation Service" type="text" required="" name="pharmacomparison_affiliation_service" value="<?=$vendor['pharmacomparison_affiliation_service']?>">
+							</div>
 
 							<div class="form-group">
 								<label>Affiliation Category</label>
 								<select class="form-control" name="affiliation_category">
-									<option value="no_affiliation">No Affiliation</option>
-									<option value="pharmacomparison_affiliation">Pharmacomparison Affiliation</option>
-									<option value="external_affiliation_service">External Affiliation Service</option>
+									<option value="no_affiliation" <?= 'no_affiliation' == $vendor['affiliation_category'] ? 'selected' : '' ?>>No Affiliation</option>
+									<option value="pharmacomparison_affiliation" <?= 'pharmacomparison_affiliation' == $vendor['affiliation_category'] ? 'selected' : '' ?>>Pharmacomparison Affiliation</option>
+									<option value="external_affiliation_service"  <?= 'external_affiliation_service' == $vendor['affiliation_category'] ? 'selected' : '' ?>>External Affiliation Service</option>
 								</select>
 							</div>
 
 							<div class="form-group">
 								<label>Affiliation Vendor Id</label>
-								<input class="form-control" placeholder="Affiliation Vendor Id" type="text" required="" name="affiliation_vendor_id">
+								<input class="form-control" placeholder="Affiliation Vendor Id" type="text" required="" name="affiliation_vendor_id" value="<?=$vendor['affiliation_vendor_id']?>">
 							</div>
 
 							<div class="form-group">
 								<label>External Affiliation Service</label>
-								<select class="form-control" name="external_affiliation_service">
+								<select class="form-control" name="external_affiliation_services_id">
 									<?php
 									foreach ($external_affiliation_services as $service) {
 										?>
-										<option value="<?=$service['id']?>"><?=$service['outsorced_provider_name']?></option>
+										<option value="<?=$service['id']?>" <?= $service['id'] == $vendor['external_affiliation_services_id'] ? 'selected' : '' ?>><?=$service['outsorced_provider_name']?></option>
 										<?php
 									}
 									?>
@@ -116,16 +116,16 @@
 
 							<div class="form-group">
 								<label>Remark</label>
-								<textarea class="form-control" placeholder="Remark" rows="3" required="" name="remark"></textarea>
+								<textarea class="form-control" placeholder="Remark" rows="3" required="" name="remark"><?=$vendor['remark']?></textarea>
 							</div>
 
 							<div class="form-group">
 								<label>Language</label>
-								<select class="form-control" name="language">
+								<select class="form-control" name="languages_id">
 									<?php
 										foreach ($languages as $lang) {
 											?>
-											<option value="<?=$lang['id']?>"><?=$lang['name']?></option>
+											<option value="<?=$lang['id']?>" <?= $lang['id'] == $vendor['languages_id'] ? 'selected' : '' ?>><?=$lang['name']?></option>
 											<?php
 										}
 									?>
@@ -136,7 +136,7 @@
 						<div class="form-actions">
 							<button type="submit" class="btn btn-primary btn-lg">
 								<i class="fa fa-save"></i>
-								Add New Vendor
+								Save Vendor
 							</button>
 						</div>
 					</form>
@@ -155,44 +155,14 @@
 <script type="text/javascript">
 	$(function() {
 		// Validation
-		$("#addnewform").validate({
+		$("#editform").validate({
 			// Rules for form validation
 			rules : {
-				vendorname : {
-					required : true
-				},
-				// pharmacomparison_affiliation_service: {
-				// 	required : true 
-				// },
-				affiliation_vendor_id : {
-					required : true
-				}, 
-				remark : {
-					required : true
-				},
-				vendor_website_url : {
-					required : true
-				}
 				
 			},
 
 			// Messages for form validation
 			messages : {
-				vendorname : {
-					required : 'Please enter your vendorname'
-				},
-				// pharmacomparison_affiliation_service : {
-				// 	required : 'Please enter Pharmacomparison Affiliation Service'
-				// }, 
-				affiliation_vendor_id : {
-					required : 'Please enter Affiliation Vendor Id'
-				}, 
-				remark : {
-					required : 'Please enter Remark'
-				},
-				vendor_website_url : {
-					required : 'Please enter Vendor Website url'
-				}
 				
 			},
 

@@ -10,16 +10,7 @@
 				</ol>
 				<!-- end breadcrumb -->
 
-				<!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right" style="margin-right:25px">
-					<a href="#" id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa fa-grid"></i> Change Grid</a>
-					<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa fa-plus"></i> Add</span>
-					<button id="search" class="btn btn-ribbon" data-title="search"><i class="fa fa-search"></i> <span class="hidden-mobile">Search</span></button>
-				</span> -->
+				
 
 			</div>
 			<!-- END RIBBON -->
@@ -67,6 +58,7 @@
 								<th>Name</th>
 								<th style="max-width: 50%;">Description</th>
 								<th>Enabled</th>
+								<th>Language</th>
 								<th>Creation</th>
 								<th>Last Modified</th>
 								<th>Actions</th>
@@ -114,6 +106,28 @@
 												<option value="0"  <?=$ingredient['enabled'] == '0' ? 'selected': ''?>>No</option>
 											</select>
 										</td>
+
+										<td>
+											<?php 
+												foreach ($languages as $language) {
+													if($language['id'] == $ingredient['language_id'])
+													{
+														echo '<span data-ingredient-id="'.$ingredient['id'].'">'.$language['name'].'</span>';
+													}	
+												}
+											?>
+
+											<select class="form-control hide edit-language"  data-ingredient-id="<?=$ingredient['id']?>">
+												<?php
+													foreach ($languages as $language) {
+														?>
+														<option <?php echo $language['id'] == $ingredient['language_id']? 'selected': '';?> value="<?=$language['id']?>" ><?=$language['name']?></option>
+														<?php
+													}
+												?>
+											</select>
+										</td>
+
 										<td>
 											<span data-ingredient-id="<?=$ingredient['id']?>"><?=$ingredient['creation']?></span>
 										</td>
@@ -192,6 +206,21 @@ $(document).ready(function() {
 		 // addnewtr.removeClass('hide');
 		 if(is_add_new) return;
 		 is_add_new = true;
+
+		 var lang_str = `
+		 	<td>
+			 	<select id="addlanguage" class="form-control add-language">
+					<?php
+						foreach ($languages as $language) {
+							?>
+							<option value="<?=$language['id']?>" ><?=$language['name']?></option>
+							<?php
+						}
+					?>
+				</select>
+			</td>
+		 `;
+
 		 $("#ingredient_table_tbody").prepend(`
 		 	<tr class="smart-form" id="addnewtr">
 				<td></td>
@@ -203,7 +232,9 @@ $(document).ready(function() {
 						<option value="1">Yes</option>
 						<option value="0">No</option>
 					</select>
-				</td>
+				</td>`+
+				lang_str+
+				`
 				<td></td>
 				<td></td>
 				<td>
@@ -214,10 +245,6 @@ $(document).ready(function() {
 		 `);
 	});
 
-	$("#addnewcancelbtn").click(function(){
-		// addnewtr.addClass('hide');
-		alert();
-	});
 
 	$(document).on('click', '#addnewcancelbtn', function(){
 		$("#addnewtr").remove();
@@ -228,6 +255,7 @@ $(document).ready(function() {
 		var addnew_name = $("#addnew_name").val();
 		var addnew_description = $("#addnew_description").val();
 		var addnew_enabled = $("#addnew_enabled").val();
+		var addlanguage = $("#addlanguage").val();
 
 		if(addnew_name == ''){
 			$("#addnew_name").parent().addClass('state-error');
@@ -253,7 +281,8 @@ $(document).ready(function() {
 			data: {
 				name: addnew_name,
 				description: addnew_description,
-				enabled: addnew_enabled
+				enabled: addnew_enabled,
+				language_id: addlanguage
 			},
 			success: function(res){
 				// console.log(res);
@@ -318,6 +347,7 @@ $(document).ready(function() {
 		var edit_name = $('.edit_name[data-ingredient-id="' + ingredient_id + '"').val();
 		var edit_description = $('.edit_description[data-ingredient-id="' + ingredient_id + '"').val();
 		var edit_enabled = $('.edit_enabled[data-ingredient-id="' + ingredient_id + '"').val();
+		var edit_language = $('.edit-language[data-ingredient-id="' + ingredient_id+ '"').val();
 
 		if(edit_name == "") {
 			$('.edit_name[data-ingredient-id="' + ingredient_id + '"').parent().addClass('state-error');
@@ -348,7 +378,8 @@ $(document).ready(function() {
 				id: ingredient_id,
 				name: edit_name,
 				description: edit_description,
-				enabled: edit_enabled
+				enabled: edit_enabled,
+				language_id: edit_language
 			},
 			success : function(res){
 				if(res.success == '1'){
