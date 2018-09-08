@@ -60,7 +60,7 @@
 								<th>Pharmacomparison Affiliation Service</th>
 								<th>Affiliation Category</th>
 								<th>Affiliation Vendor Id</th>
-								<th>Affiliation Service</th>
+								<!-- <th>Affiliation Service</th> -->
 								<th>Remark</th>
 								<th>Language</th>
 								<th>Last Modified</th>
@@ -86,7 +86,7 @@
 									}
 									?>
 								</td>
-								<td><?=$vendor['pharmacomparison_affiliation_service']?></td>
+								
 								<td><?=$vendor['affiliation_category']?></td>
 								<td><?=$vendor['affiliation_vendor_id']?></td>
 								<td>

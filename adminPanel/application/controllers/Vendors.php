@@ -97,6 +97,7 @@ class Vendors extends DashboardBase
         $data['remark'] = $this->input->post('remark');
         $data['languages_id'] = $this->input->post('language');
         $this->vendor_model->add($data);
+        redirect('/Vendors/managevendors');
     }
 
     public function postAddNewLocation() {
@@ -104,7 +105,7 @@ class Vendors extends DashboardBase
 
         $this->location_model->add($data);
 
-        echo json_encode($data);
+        redirect('/Vendors/locations/'.$data['vendors_id']);
     }
 
     public function postEditLocation($vendorid, $locationid) {
