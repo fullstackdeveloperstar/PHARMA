@@ -25,7 +25,7 @@
 					<!-- PAGE HEADER -->
 					<i class="fa-fw fa fa-home"></i> 
 						Locations
-						<a class="btn btn-success" href="<?=base_url()?>Vendors/addnewlocation">Add New Location</a>
+						<a class="btn btn-success" href="<?=base_url()?>Vendors/addnewlocation/<?=$vendor['id']?>">Add New Location</a>
 				</h1>
 			</div>
 			<!-- end col -->
