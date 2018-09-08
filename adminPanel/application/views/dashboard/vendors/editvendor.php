@@ -82,10 +82,7 @@
 								</select>
 							</div>
 
-							<div class="form-group">
-								<label>Pharmacomparison Affiliation Service</label>
-								<input class="form-control" placeholder="Pharmacomparison Affiliation Service" type="text" required="" name="pharmacomparison_affiliation_service" value="<?=$vendor['pharmacomparison_affiliation_service']?>">
-							</div>
+							
 
 							<div class="form-group">
 								<label>Affiliation Category</label>

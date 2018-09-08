@@ -36,7 +36,7 @@ class Location_model extends CI_Model
             return $result;
         }
         else {
-            return false;
+            return [];
         }
     }
 
