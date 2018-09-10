@@ -113,6 +113,7 @@
 								<td>
 									<a class="btn btn-success" href="<?=base_url()?>Vendors/editvendor/<?=$vendor['id']?>">Edit</a>
 									<a class="btn btn-primary" href="<?=base_url()?>Vendors/locations/<?=$vendor['id']?>">Locations</a>
+									<a class="btn btn-warning" href="<?=base_url()?>Vendors/view/<?=$vendor['id']?>">View</a>
 									<button class="btn btn-danger deletevendor" data-vendor-id="<?=$vendor['id']?>">Delete</button>
 								</td>
 								<?php

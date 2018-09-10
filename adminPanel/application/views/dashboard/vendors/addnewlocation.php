@@ -90,55 +90,6 @@
 								<label>Vendor Email</label>
 								<input class="form-control" placeholder="Vendor Email" type="email" required="" name="vendor_email">
 							</div>
-							
-							<div class="form-group">
-								<label>Reference People</label>
-								<select class="form-control" name="reference_people_id">
-									<?php
-									foreach ($peoples as $people) {
-										?>
-										<option value="<?=$people['id']?>"><?=$people['username']?></option>
-										<?php
-									}
-									?>
-								</select>
-							</div>
-
-							<div class="form-group">
-								<label>Minimum Domestic Delivery Cost</label>
-								<input class="form-control" placeholder="Minimum Domestic Delivery Cost" type="text" required="" name="minimum_domestic_delivery_cost">
-							</div>
-
-							<div class="form-group">
-								<label>Minimum Domestic Delivery Cost Currencies</label>
-								<select class="form-control" name="minimum_domestic_delivery_cost_currencies">
-									<?php
-									foreach ($currencies as $currency) {
-										?>
-										<option value="<?=$currency['id']?>"><?=$currency['name']?></option>
-										<?php
-									}
-									?>
-								</select>
-							</div>
-
-							<div class="form-group">
-								<label>Minimum International Delivery Cost</label>
-								<input class="form-control" placeholder="Minimum International Delivery Cost" type="text" required="" name="minimum_international_delivery_cost">
-							</div>
-
-							<div class="form-group">
-								<label>Minimum International Delivery Currencies</label>
-								<select class="form-control" name="minimum_international_delivery_currencies">
-									<?php
-									foreach ($currencies as $currency) {
-										?>
-										<option value="<?=$currency['id']?>"><?=$currency['name']?></option>
-										<?php
-									}
-									?>
-								</select>
-							</div>
 
 							<div class="form-group">
 								<label>Enabled</label>

@@ -63,11 +63,6 @@
 								<th>Phone</th>
 								<th>Fax</th>
 								<th>Vendor Email</th>
-								<th>Reference People</th>
-								<th>Minimum Domestic Delivery Cost</th>
-								<th>Minimum Domestic Delivery Cost Currency</th>
-								<th>Minimum International Delivery Cost	</th>
-								<th>Minimum International Delivery Currencies</th>
 								<th>Language</th>
 								<th>Enabled</th>
 								<th>Last Modified</th>
@@ -90,35 +85,6 @@
 									<td><?=$location['phone']?></td>
 									<td><?=$location['fax']?></td>
 									<td><?=$location['vendor_email']?></td>
-									<td>
-										<?php
-										foreach ($peoples as $people) {
-											if ($people['id'] == $location['reference_people_id']) {
-												echo $people['username'];
-											}
-										}
-										?>
-									</td>
-									<td><?=$location['minimum_domestic_delivery_cost']?></td>
-									<td>
-										<?php
-										foreach ($currencies as $currency) {
-											if($currency['id'] == $location['minimum_domestic_delivery_cost_currencies']) {
-												echo $currency['name'];
-											}
-										}
-										?>
-									</td>
-									<td><?=$location['minimum_international_delivery_cost']?></td>
-									<td>
-										<?php
-										foreach ($currencies as $currency) {
-											if($currency['id'] == $location['minimum_international_delivery_currencies']) {
-												echo $currency['name'];
-											}
-										}
-										?>
-									</td>
 									<td>
 										<?php
 										foreach ($languages as $language) {

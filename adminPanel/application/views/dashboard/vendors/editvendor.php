@@ -42,7 +42,7 @@
 								
 			<header role="heading" class="ui-sortable-handle">
 				<span class="widget-icon"> <i class="fa fa-eye"></i> </span>
-				<h2>Edit New Vendor Form</h2>
+				<h2>Modify Vendor Form</h2>
 
 			</header>
 

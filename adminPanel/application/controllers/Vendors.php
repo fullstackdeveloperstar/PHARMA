@@ -86,6 +86,21 @@ class Vendors extends DashboardBase
         $this->loadView('dashboard/vendors/editlocation', $data);
     }
 
+    public function view($vendorid) {
+        $vendor = $this->vendor_model->get($vendorid);
+        if(!$vendor) {
+            redirect('/Vendors/managevendors');
+        }
+         $data['vendor'] = $vendor;
+        $data['languages'] = $this->languages_model->getAll();
+        $data['currencies'] = $this->currencies_model->getAllCurrencies();
+        $data['peoples'] = $this->people_model->getAll();
+        $whereData['vendors_id'] = $vendorid;
+        $data['locations'] = $this->location_model->getWhere($whereData);
+        $data['external_affiliation_services'] = $this->external_affiliation_services_model->getAll();
+        $this->loadView('dashboard/vendors/view', $data);
+    }
+
     public function postAddNewVendor() {
         $data['vendor_name'] = $this->input->post('vendorname');
         $data['vendor_web_site_url'] = $this->input->post('vendor_website_url');
