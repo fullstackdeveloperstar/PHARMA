@@ -74,48 +74,50 @@
 							foreach ($vendors as $vendor) {
 								$i ++;
 								?>
-								<td><?=$i?></td>
-								<td><?=$vendor['vendor_name']?></td>
-								<td><?=$vendor['vendor_web_site_url']?></td>
-								<td>
-									<?php
-									foreach ($currencies as $currency) {
-										if($currency['id'] == $vendor['default_currencies_id']) {
-											echo $currency['name'];
+								<tr>
+									<td><?=$i?></td>
+									<td><?=$vendor['vendor_name']?></td>
+									<td><?=$vendor['vendor_web_site_url']?></td>
+									<td>
+										<?php
+										foreach ($currencies as $currency) {
+											if($currency['id'] == $vendor['default_currencies_id']) {
+												echo $currency['name'];
+											}
 										}
-									}
-									?>
-								</td>
-								
-								<td><?=$vendor['affiliation_category']?></td>
-								<td><?=$vendor['affiliation_vendor_id']?></td>
-								<td>
-									<?php
-									foreach ($external_affiliation_services as $service) {
-										if($service['id'] == $vendor['external_affiliation_services_id']) {
-											echo $service['outsorced_provider_name'];
+										?>
+									</td>
+									
+									<td><?=$vendor['affiliation_category']?></td>
+									<td><?=$vendor['affiliation_vendor_id']?></td>
+									<td>
+										<?php
+										foreach ($external_affiliation_services as $service) {
+											if($service['id'] == $vendor['external_affiliation_services_id']) {
+												echo $service['outsorced_provider_name'];
+											}
 										}
-									}
-									?>
-								</td>
-								<td><?=$vendor['remark']?></td>
-								<td>
-									<?php
-									foreach ($languages as $language) {
-										if($language['id'] == $vendor['languages_id']) {
-											echo $language['name'];
+										?>
+									</td>
+									<td><?=$vendor['remark']?></td>
+									<td>
+										<?php
+										foreach ($languages as $language) {
+											if($language['id'] == $vendor['languages_id']) {
+												echo $language['name'];
+											}
 										}
-									}
-									?>
-								</td>
-								<td><?=$vendor['last_modified']?></td>
-								<td><?=$vendor['creation']?></td>
-								<td>
-									<a class="btn btn-success" href="<?=base_url()?>Vendors/editvendor/<?=$vendor['id']?>">Edit</a>
-									<a class="btn btn-primary" href="<?=base_url()?>Vendors/locations/<?=$vendor['id']?>">Locations</a>
-									<a class="btn btn-warning" href="<?=base_url()?>Vendors/view/<?=$vendor['id']?>">View</a>
-									<button class="btn btn-danger deletevendor" data-vendor-id="<?=$vendor['id']?>">Delete</button>
-								</td>
+										?>
+									</td>
+									<td><?=$vendor['last_modified']?></td>
+									<td><?=$vendor['creation']?></td>
+									<td>
+										<a class="btn btn-success" href="<?=base_url()?>Vendors/editvendor/<?=$vendor['id']?>">Edit</a>
+										<a class="btn btn-primary" href="<?=base_url()?>Vendors/locations/<?=$vendor['id']?>">Locations</a>
+										<a class="btn btn-warning" href="<?=base_url()?>Vendors/view/<?=$vendor['id']?>">View</a>
+										<button class="btn btn-danger deletevendor" data-vendor-id="<?=$vendor['id']?>">Delete</button>
+									</td>
+								</tr>
 								<?php
 							}
 							?>

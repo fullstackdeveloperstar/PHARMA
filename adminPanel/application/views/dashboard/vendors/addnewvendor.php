@@ -82,28 +82,26 @@
 								</select>
 							</div>
 
-							<!-- <div class="form-group">
-								<label>Pharmacomparison Affiliation Service</label>
-								<input class="form-control" placeholder="Pharmacomparison Affiliation Service" type="text" required="" name="pharmacomparison_affiliation_service">
-							</div> -->
-
 							<div class="form-group">
 								<label>Affiliation Category</label>
-								<select class="form-control" name="affiliation_category">
+								<select class="form-control" name="affiliation_category" id="affiliation_category">
 									<option value="no_affiliation">No Affiliation</option>
 									<option value="pharmacomparison_affiliation">Pharmacomparison Affiliation</option>
 									<option value="external_affiliation_service">External Affiliation Service</option>
 								</select>
 							</div>
 
-							<div class="form-group">
-								<label>Affiliation Vendor Id</label>
-								<input class="form-control" placeholder="Affiliation Vendor Id" type="text" required="" name="affiliation_vendor_id">
+							<div class="form-group hide" id="type_of_ext_affiliation_div">
+								<label>Type of External Affiliation</label>
+								<select class="form-control" name="type_of_ext_affiliation" id="type_of_ext_affiliation">
+									<option value="ext_third_party">ext_third_party</option>
+									<option value="ext_vendor_own">ext_vendor_own</option>
+								</select>
 							</div>
 
-							<div class="form-group">
-								<label>External Affiliation Service</label>
-								<select class="form-control" name="external_affiliation_service">
+							<div class="form-group hide" id="external_affiliation_services_id_div">
+								<label>Outsourced Provider Name</label>
+								<select class="form-control" name="external_affiliation_services_id">
 									<?php
 									foreach ($external_affiliation_services as $service) {
 										?>
@@ -113,6 +111,40 @@
 									?>
 								</select>
 							</div>
+
+							<div id="external_affiliation_services_data_div" class="hide">
+								<div class="form-group">
+									<label>Outsorced Provider Name</label>
+									<input class="form-control" placeholder="Outsorced Provider Name" type="text" required="" name="outsorced_provider_name">
+								</div>
+
+								<div class="form-group">
+									<label>Outsorced Provider Url</label>
+									<input class="form-control" placeholder="Outsorced Provider Url" type="url" required="" name="outsorced_provider_url">
+								</div>
+
+								<div class="form-group">
+									<label>Our Affiliation Id</label>
+									<input class="form-control" placeholder="Our Affiliation Id" type="text" required="" name="our_affiliation_id">
+								</div>
+
+								<div class="form-group">
+									<label>Our Affiliation User Name</label>
+									<input class="form-control" placeholder="Our Affiliation User Name" type="text" required="" name="our_affiliation_user_name">
+								</div>
+
+								<div class="form-group">
+									<label>Our Affiliation PW</label>
+									<input class="form-control" placeholder="Our Affiliation PW" type="text" required="" name="our_affiliation_pw">
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label>Affiliation Vendor Id</label>
+								<input class="form-control" placeholder="Affiliation Vendor Id" type="text" required="" name="affiliation_vendor_id">
+							</div>
+
 
 							<div class="form-group">
 								<label>Remark</label>
@@ -198,7 +230,43 @@
 
 			// Do not change code below
 			errorPlacement : function(error, element) {
-				error.insertAfter(element.parent());
+				error.insertAfter(element);
+			}
+		});
+
+		$("#affiliation_category").change(function(){
+			var affiliation_category = $(this).val();
+			var type_of_ext_affiliation_div = $("#type_of_ext_affiliation_div");
+			var external_affiliation_services_id_div = $('#external_affiliation_services_id_div');
+			var type_of_ext_affiliation = $('#type_of_ext_affiliation').val();
+			var external_affiliation_services_data_div = $("#external_affiliation_services_data_div");
+			if (affiliation_category == 'external_affiliation_service') {
+				type_of_ext_affiliation_div.removeClass('hide');
+				if(type_of_ext_affiliation == 'ext_third_party') {
+					external_affiliation_services_id_div.removeClass('hide');
+					external_affiliation_services_data_div.addClass('hide');
+				} else {
+					external_affiliation_services_id_div.addClass('hide');
+					external_affiliation_services_data_div.removeClass('hide');
+				}
+			} else {
+				type_of_ext_affiliation_div.addClass('hide');
+				external_affiliation_services_id_div.addClass('hide');
+				external_affiliation_services_data_div.addClass('hide');
+			}
+
+		});
+
+		$("#type_of_ext_affiliation").change(function(){
+			var type_of_ext_affiliation = $(this).val();
+			var external_affiliation_services_id_div = $("#external_affiliation_services_id_div");
+			var external_affiliation_services_data_div = $("#external_affiliation_services_data_div");
+			if(type_of_ext_affiliation == 'ext_third_party') {
+				external_affiliation_services_id_div.removeClass('hide');
+				external_affiliation_services_data_div.addClass('hide');
+			} else {
+				external_affiliation_services_id_div.addClass('hide');
+				external_affiliation_services_data_div.removeClass('hide');
 			}
 		});
 	});
